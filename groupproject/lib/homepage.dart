@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:groupproject/driversetup.dart';
+import 'package:groupproject/passengersetup.dart';
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
@@ -30,14 +31,17 @@ class _MyHomePageState extends State<MyHomePage> {
                 Navigator.push(context,
                   MaterialPageRoute(builder: (context) => DriverSetup()),
                 );
-
               },
               textColor: Colors.white,
               color: Color(0xFFFF9900),
               child: Text('Driver', style: TextStyle(fontSize: 20),),
             ),
             RaisedButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => PassengerSetup()),
+                );
+              },
               textColor: Colors.white,
               color: Color(0xFFFF9900),
               child: Text('Passenger', style: TextStyle(fontSize: 20),),
