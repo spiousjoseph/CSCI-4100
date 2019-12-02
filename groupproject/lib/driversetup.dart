@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:groupproject/passengersetup.dart';
+import 'package:groupproject/driverinvites.dart';
 
 class DriverSetup extends StatelessWidget{
 
@@ -40,25 +42,20 @@ class DriverSetup extends StatelessWidget{
                     hintText: 'Enter your Driver License Information',
                   ),
                 ),
-
-                RaisedButton(
-                  onPressed: () {
-
-                  },
-                  textColor: Colors.white,
-                  color: Color(0xFFFF9900),
-                  child: Text('Confirm', style: TextStyle(fontSize: 20),),
-                ),
               ],
             ),
-
-
-
-
 
           ],
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(context,
+            MaterialPageRoute(builder: (context) => DriverInvites()),
+          );
+        },
+        child: Icon(Icons.add),
+      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
 
   }
