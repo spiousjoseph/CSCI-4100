@@ -16,7 +16,7 @@ class DriverInvites extends StatelessWidget{
       ),
       body: Center(
         child: GestureDetector(
-          child: ListView(
+          child: ListView( //change this to add the invites dynamically, just for view representation for now
             children: <Widget>[
               Card(
                 child: ListTile(
