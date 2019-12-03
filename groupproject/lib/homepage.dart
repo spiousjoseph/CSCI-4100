@@ -29,7 +29,7 @@ class _MyHomePageState extends State<MyHomePage> {
             RaisedButton(
               onPressed: () {
                 Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => DriverSetup()),
+                  MaterialPageRoute(builder: (context) => DriverSetupPage()),
                 );
               },
               textColor: Colors.white,
