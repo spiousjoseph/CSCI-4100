@@ -11,6 +11,6 @@
   "pregister": {
     "Name": "Name",
     "Destination": "Destination",
-    "DestinationHint": "Entrez la destination"
+    "DestinationHint": "Enter The Destination"
   }
 }
