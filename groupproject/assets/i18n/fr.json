@@ -7,5 +7,10 @@
     "NameHint": "Entrez votre nom",
     "CarHint": "Entrez la marque et le modèle de votre véhicule",
     "LicenseHint": "Entrez les informations de votre permis de conduire"
+  },
+  "pregister": {
+    "Name": "Prénom",
+    "Destination": "Destination",
+    "DestinationHint": "Entrez la destination"
   }
 }
