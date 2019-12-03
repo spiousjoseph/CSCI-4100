@@ -1,6 +1,6 @@
-# groupproject
+# location_example
 
-A new Flutter application.
+A new Flutter project.
 
 ## Getting Started
 
