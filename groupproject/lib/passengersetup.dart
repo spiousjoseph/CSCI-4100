@@ -1,5 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:geolocator/geolocator.dart' as prefix0;
+//import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'passengermap.dart';
+import 'package:geolocator/geolocator.dart';
+import 'package:flutter/rendering.dart';
+import 'package:location/location.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:latlong/latlong.dart';
+
+
 
 class PassengerSetup extends StatefulWidget {
   @override
@@ -7,30 +16,48 @@ class PassengerSetup extends StatefulWidget {
 }
 
 class PassengerSetupState extends State<PassengerSetup>{
+  TextEditingController _controllerName;
+  TextEditingController _controller;
 
-  GoogleMapController mapController;
-
-  //temp location, we need to get
-  final LatLng _center = const LatLng(45.521563, -122.677433);
-
-  void _onMapCreated(GoogleMapController controller) {
-    mapController = controller;
-  }
 
   @override
   Widget build(BuildContext context){
     return Scaffold(
       appBar: AppBar(
-        title: Text('Map'),
+        title: Text('Passenger Setup'),
       ),
-      body: GoogleMap(
-        onMapCreated: _onMapCreated,
-        initialCameraPosition: CameraPosition(
-          target: _center,
-          zoom: 11.0,
+      body: Center(
+        child: ListView(
+          children: <Widget>[
+            TextField(
+              decoration: InputDecoration(
+                labelText: 'Name: ',
+                hintText: 'Enter your Name',
+              ),
+            ),
+            TextField(
+              decoration: InputDecoration(
+                labelText: 'Destination: ',
+                hintText: 'Enter your Destination',
+              ),
+            ),
+          ],
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+
+
+          Navigator.push(context,
+            MaterialPageRoute(builder: (context) => PassengerMap()),
+          );
+        },
+        child: Icon(Icons.check),
+      ),
     );
+  }
+
+  _getCurrentLocation() {
 
   }
 
