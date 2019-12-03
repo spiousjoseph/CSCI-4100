@@ -1,0 +1,11 @@
+{
+  "register": {
+    "Name": "Name",
+    "Car":"Car",
+    "NumberofSeats": "Number of Seats",
+    "DriversLicense": "Drivers License",
+    "NameHint": "Enter Your Name",
+    "CarHint": "Enter Your Vehicle Make and Model",
+    "LicenseHint": "Enter your Driver's License Information"
+  }
+}
