@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:groupproject/passengersetup.dart';
-
+import 'package:groupproject/driverprofile.dart';
 
 
 class DriverInvites extends StatelessWidget{
@@ -55,7 +55,9 @@ class DriverInvites extends StatelessWidget{
 
       floatingActionButton: FloatingActionButton(
         onPressed: () => {
-
+          Navigator.push(context,
+            MaterialPageRoute(builder: (context) => DriverProfile()),
+          ),
         },
         child: Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
