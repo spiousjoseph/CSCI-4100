@@ -60,11 +60,7 @@ class PassengerMapState extends State<PassengerMap>{
                       color: Colors.blue,
                       iconSize: 45.0,
                       onPressed: () {
-                        mylocation = widget.currentPosition.locationName;
-                        
-
-
-
+                        mylocation = 'Current Location: ' + widget.currentPosition.locationName;
                         Scaffold.of(context).showSnackBar(SnackBar(
                           content: Text(mylocation),
                         ));
