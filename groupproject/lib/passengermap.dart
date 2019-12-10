@@ -145,6 +145,11 @@ class PassengerMapState extends State<PassengerMap>{
                       iconSize: 45.0,
                       onPressed: () {
                         print('Icon clicked');
+
+                        Scaffold.of(context).showSnackBar(SnackBar(
+                          content: Text('Invite Sent!'),
+                        ));
+
                       },
                     ),
                   ),
