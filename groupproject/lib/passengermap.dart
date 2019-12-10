@@ -22,6 +22,7 @@ import 'passenger.dart';
 
 
 
+
 //Future<Position> position =  Geolocator().getCurrentPosition(desiredAccuracy: prefix0.LocationAccuracy.high);
 
 
@@ -43,18 +44,20 @@ class PassengerMap extends StatefulWidget {
 
 class PassengerMapState extends State<PassengerMap>{
 
-  //var centre =  LatLng(43.9457842,-78.895896);
-
-
-
-
-
-  //_getCurrentLocation();
-  //GoogleMapController mapController;
-
   var _geolocator = Geolocator();
-  var _positionMessage = '';
-  //var centre = LatLng(43.9457842,-78.895896);
+  //var driverLocation = LatLng(43.808158299999995, -79.1661479);//test location
+
+  void _getDriverLocation(userLocation){
+
+    _geolocator.placemarkFromCoordinates(userLocation.latitude, userLocation.longitude).then((List<Placemark> places) {
+      print('Reverse geocoding results:');
+      for (Placemark place in places) {
+        print('\t${place.name}, ${place.subThoroughfare}, ${place.thoroughfare}, ${place.locality}, ${place.subAdministrativeArea}');
+        //print(place.position.latitude);
+        //print(place.position.longitude);
+      }
+    });
+  }
 
 
 
@@ -62,7 +65,7 @@ class PassengerMapState extends State<PassengerMap>{
 
     // geolocator plug-in:
     setState(() {
-      _positionMessage = userLocation.latitude.toString() + ', ' + userLocation.longitude.toString();
+      //_positionMessage = userLocation.latitude.toString() + ', ' + userLocation.longitude.toString();
       //centre =  LatLng(userLocation.latitude,userLocation.longitude);
     });
     print('New location: ${userLocation.latitude}, ${userLocation.longitude}.');
@@ -92,6 +95,7 @@ class PassengerMapState extends State<PassengerMap>{
   @override
   Widget build(BuildContext context) {
     //centre =  LatLng(_currentPosition.latitude,_currentPosition.longitude);
+    var driverLocation = LatLng( (widget.currentPosition.location.latitude + 0.00222), (widget.currentPosition.location.longitude + 0.00222) );//test location
 
     return Scaffold(
       appBar: AppBar(
@@ -130,6 +134,21 @@ class PassengerMapState extends State<PassengerMap>{
                     ),
                   ),
                 ),
+                Marker(
+                  width: 45.0,
+                  height: 45.0,
+                  point: driverLocation,
+                  builder: (context) => Container(
+                    child: IconButton(
+                      icon: Icon(Icons.directions_car),
+                      color: Colors.blue,
+                      iconSize: 45.0,
+                      onPressed: () {
+                        print('Icon clicked');
+                      },
+                    ),
+                  ),
+                ),
               ],
             ),
 
@@ -138,14 +157,15 @@ class PassengerMapState extends State<PassengerMap>{
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          setState(() {
-            initState();
-          });
+          //print('I WANNA GO HERE:');
+          //print(widget.currentPosition.destination);
+          //refresh page
 
         },
         tooltip: 'Update',
         child: Icon(Icons.update),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      ),
+
     );
   }
 

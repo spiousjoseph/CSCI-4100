@@ -17,8 +17,9 @@ class PassengerSetup extends StatefulWidget {
 }
 
 class PassengerSetupState extends State<PassengerSetup> {
-  TextEditingController _controllerName;
-  TextEditingController _controllerDestination;
+  final TextEditingController _controllerName = new TextEditingController();
+  final TextEditingController _controllerDestination = new TextEditingController();
+  String _city;
   //Passenger passenger;
 
 
@@ -26,7 +27,9 @@ class PassengerSetupState extends State<PassengerSetup> {
   var _positionMessage = '';
   var centre;
   //String address = '301 Front St W, Toronto, ON';
-  String address = '160 Lionhead Trail, Toronto, ON';
+  //String address = '160 Lionhead Trail, Toronto, ON';
+  String address = '17 Roscoe Rd, Toronto, ON';
+  //String address = '2000 Simcoe St N, Oshawa, ON';
 
   void _updateLocation(userLocation) {
 
@@ -43,8 +46,8 @@ class PassengerSetupState extends State<PassengerSetup> {
       print('Reverse geocoding results:');
       for (Placemark place in places) {
         print('\t${place.name}, ${place.subThoroughfare}, ${place.thoroughfare}, ${place.locality}, ${place.subAdministrativeArea}');
-        print(place.position.latitude);
-        print(place.position.longitude);
+        //print(place.position.latitude);
+        //print(place.position.longitude);
       }
     });
 
@@ -53,6 +56,8 @@ class PassengerSetupState extends State<PassengerSetup> {
       print('Forward geocoding results:');
       for (Placemark place in places) {
         print('\t${place.name}, ${place.subThoroughfare}, ${place.thoroughfare}, ${place.locality}, ${place.subAdministrativeArea}');
+        print(place.position.latitude);
+        print(place.position.longitude);
       }
     });
 
@@ -129,6 +134,24 @@ class PassengerSetupState extends State<PassengerSetup> {
                     context, 'pregister.DestinationHint')),
               ),
             ),
+            DropdownButtonFormField(
+              decoration: const InputDecoration(
+                labelText: 'City',
+              ),
+              value: _city,
+              items: <String>['Toronto, ON', 'Oshawa, ON ']
+                  .map<DropdownMenuItem<String>>((String item) {
+                return DropdownMenuItem<String>(
+                  value: item,
+                  child: Text(item),
+                );
+              }).toList(),
+              onChanged: (String newValue) {
+                setState(() {
+                  _city = newValue;
+                });
+              },
+            ),
           ],
         ),
       ),
@@ -136,7 +159,7 @@ class PassengerSetupState extends State<PassengerSetup> {
         onPressed: () {
           Passenger passenger = Passenger(
             name: _controllerName.toString(),
-            destination: _controllerDestination.toString(),
+            destination: _controllerDestination.text.toString() + ', ' + _city,
             location: centre,
           );
 
