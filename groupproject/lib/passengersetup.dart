@@ -20,44 +20,24 @@ class PassengerSetupState extends State<PassengerSetup> {
   final TextEditingController _controllerName = new TextEditingController();
   final TextEditingController _controllerDestination = new TextEditingController();
   String _city;
-  //Passenger passenger;
-
-
+  String LocationName = '';
   var _geolocator = Geolocator();
-  var _positionMessage = '';
   var centre;
-  //String address = '301 Front St W, Toronto, ON';
-  //String address = '160 Lionhead Trail, Toronto, ON';
+
   String address = '17 Roscoe Rd, Toronto, ON';
   //String address = '2000 Simcoe St N, Oshawa, ON';
 
   void _updateLocation(userLocation) {
-
     // geolocator plug-in:
     setState(() {
-      _positionMessage = userLocation.latitude.toString() + ', ' + userLocation.longitude.toString();
       centre =  LatLng(userLocation.latitude,userLocation.longitude);
 
     });
-    print('New location: ${userLocation.latitude}, ${userLocation.longitude}.');
-    print('Centre location: ${centre.latitude}, ${centre.longitude}.');
-
     _geolocator.placemarkFromCoordinates(userLocation.latitude, userLocation.longitude).then((List<Placemark> places) {
       print('Reverse geocoding results:');
       for (Placemark place in places) {
         print('\t${place.name}, ${place.subThoroughfare}, ${place.thoroughfare}, ${place.locality}, ${place.subAdministrativeArea}');
-        //print(place.position.latitude);
-        //print(place.position.longitude);
-      }
-    });
-
-
-    _geolocator.placemarkFromAddress(address).then((List<Placemark> places) {
-      print('Forward geocoding results:');
-      for (Placemark place in places) {
-        print('\t${place.name}, ${place.subThoroughfare}, ${place.thoroughfare}, ${place.locality}, ${place.subAdministrativeArea}');
-        print(place.position.latitude);
-        print(place.position.longitude);
+        LocationName = '\t${place.subThoroughfare}, ${place.thoroughfare}, ${place.locality}';
       }
     });
 
@@ -161,6 +141,7 @@ class PassengerSetupState extends State<PassengerSetup> {
             name: _controllerName.toString(),
             destination: _controllerDestination.text.toString() + ', ' + _city,
             location: centre,
+            locationName: LocationName,
           );
 
           Navigator.push(

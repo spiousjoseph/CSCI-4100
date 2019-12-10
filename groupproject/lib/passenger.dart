@@ -4,10 +4,11 @@ import 'package:latlong/latlong.dart';
 //import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Passenger{
-  Passenger({this.name, this.reference, this.destination, this.location});
+  Passenger({this.name, this.reference, this.destination, this.location, this.locationName});
   String name;
   String reference;
   String destination;
+  String locationName;
   LatLng location;
   //DocumentReference reference;
 
