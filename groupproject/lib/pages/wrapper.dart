@@ -1,6 +1,6 @@
+import 'package:groupproject/homepage.dart';
 import 'package:groupproject/models/user.dart';
 import 'package:groupproject/pages/authenticate/authenticate.dart';
-import 'package:groupproject/pages/home/home.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -10,11 +10,11 @@ class Wrapper extends StatelessWidget {
 
     final user = Provider.of<User>(context);
     
-    // return either the Home or Authenticate widget
+    // return either the MyHomePage or Authenticate widget
     if (user == null){
       return Authenticate();
     } else {
-      return Home();
+      return MyHomePage();
     }
     
   }
