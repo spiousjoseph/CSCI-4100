@@ -12,6 +12,7 @@ Cloud storage for all of your data, Functional map with geolocation tools added 
 
 Data table for passengerlist.dart does not handle selection visuals proper however will still operate the same as if it did. So if user were to tap the check box, the checkbox will not refresh with a checked state however will register to the program that it is selected and have the same functionality as proven when an attempt to delete the passenger is made
 
+Passenger setup does not have error checking on destination. So if an address is inputed that is not an actual address program will result in an error and potentially crash.
 
 ## Getting Started
 
