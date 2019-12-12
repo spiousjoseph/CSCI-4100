@@ -7,24 +7,11 @@ import 'package:geolocator/geolocator.dart' as prefix0;
 import 'package:location/location.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:latlong/latlong.dart';
-
-//var currentLocation = LocationData;
-Position _currentPosition;
-
-
-
-
-
-
-
-//Future<Position> position =  Geolocator().getCurrentPosition(desiredAccuracy: prefix0.LocationAccuracy.high);
-
-
-//Geolocator geolocator = Geolocator()..forceAndroidLocationManager;
-//Position _currentPosition = geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.best);
-
+import 'passenger.dart';
 
 class PassengerMap extends StatefulWidget {
+  PassengerMap({Key key, this.currentPosition}) : super(key: key);
+  final Passenger currentPosition;
 
 
   @override
@@ -34,58 +21,13 @@ class PassengerMap extends StatefulWidget {
 
 class PassengerMapState extends State<PassengerMap>{
 
-
-
-
-
-  //_getCurrentLocation();
-  //GoogleMapController mapController;
-
   var _geolocator = Geolocator();
-  var _positionMessage = '';
-  var centre = LatLng(43.9457842,-78.895896);
-
-
-  void _updateLocation(userLocation) {
-
-    // geolocator plug-in:
-    setState(() {
-      _positionMessage = userLocation.latitude.toString() + ', ' + userLocation.longitude.toString();
-      centre =  LatLng(userLocation.latitude,userLocation.longitude);
-    });
-    print('New location: ${userLocation.latitude}, ${userLocation.longitude}.');
-
-  }
-
-
-  @override
-  void initState() {
-    // this is called when the location changes
-    // geolocator plug-in version:
-
-    super.initState();
-    _getLocation().then((position) {
-      _currentPosition = position;
-      centre =  LatLng(_currentPosition.latitude,_currentPosition.longitude);
-    });
-
-    _geolocator.getPositionStream(LocationOptions(accuracy: prefix0.LocationAccuracy.best, timeInterval: 5000))
-        .listen((userLocation) {
-      _updateLocation(userLocation);
-    }
-    );
-
-
-  }
-
-
-
 
   @override
   Widget build(BuildContext context) {
-    centre =  LatLng(_currentPosition.latitude,_currentPosition.longitude);
-
-
+    //centre =  LatLng(_currentPosition.latitude,_currentPosition.longitude);
+    var driverLocation = LatLng( (widget.currentPosition.location.latitude + 0.00222), (widget.currentPosition.location.longitude + 0.00222) );//test location
+    String mylocation = '';
     return Scaffold(
       appBar: AppBar(
         title: Text('Map'),
@@ -94,7 +36,7 @@ class PassengerMapState extends State<PassengerMap>{
         child: FlutterMap(
           options: MapOptions(
             minZoom: 16.0,
-            center: centre,
+            center: widget.currentPosition.location,
           ),
           layers: [
             TileLayerOptions(
@@ -102,7 +44,7 @@ class PassengerMapState extends State<PassengerMap>{
               // for MapBox:
                 urlTemplate: 'https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}@2x.png?access_token={accessToken}',
                 additionalOptions: {
-                  'accessToken': 'pk.eyJ1IjoibW1lcHN0ZWFkIiwiYSI6ImNrM2hzdTF5ZTAxMGIzaGw2Z2tuMzRld3UifQ.gm6wZqU27OTzCDSMD_DLwA',
+                  'accessToken': 'pk.eyJ1IjoiZ2hvc3RzaiIsImEiOiJjazNwOWt5ZDYwMHY3M2Ntbm9jNnA2MHE3In0.WTY_0iZKuUXoTKiNjVTgTg',
                   'id': 'mapbox.streets'
                 }
             ),
@@ -111,14 +53,37 @@ class PassengerMapState extends State<PassengerMap>{
                 Marker(
                   width: 45.0,
                   height: 45.0,
-                  point: centre,
+                  point: widget.currentPosition.location,
                   builder: (context) => Container(
                     child: IconButton(
                       icon: Icon(Icons.location_on),
                       color: Colors.blue,
                       iconSize: 45.0,
                       onPressed: () {
+                        mylocation = 'Current Location: ' + widget.currentPosition.locationName;
+                        Scaffold.of(context).showSnackBar(SnackBar(
+                          content: Text(mylocation),
+                        ));
+                      },
+                    ),
+                  ),
+                ),
+                Marker(
+                  width: 45.0,
+                  height: 45.0,
+                  point: driverLocation,
+                  builder: (context) => Container(
+                    child: IconButton(
+                      icon: Icon(Icons.directions_car),
+                      color: Colors.blue,
+                      iconSize: 45.0,
+                      onPressed: () {
                         print('Icon clicked');
+
+                        Scaffold.of(context).showSnackBar(SnackBar(
+                          content: Text('Invite Sent!'),
+                        ));
+
                       },
                     ),
                   ),
@@ -131,30 +96,17 @@ class PassengerMapState extends State<PassengerMap>{
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          setState(() {
-            initState();
-          });
+          //print('I WANNA GO HERE:');
+          //print(widget.currentPosition.destination);
+          //refresh page
 
         },
         tooltip: 'Update',
         child: Icon(Icons.update),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      ),
+
     );
   }
-  Future<Position> _getLocation() async {
-    var currentLocation;
-    try {
-      currentLocation = await _geolocator.getCurrentPosition(
-          desiredAccuracy: prefix0.LocationAccuracy.best);
-      _currentPosition = currentLocation;
-      centre = LatLng(_currentPosition.latitude, _currentPosition.longitude);
-    } catch (e) {
-      currentLocation = null;
-    }
-    return currentLocation;
-  }
-
-
 
 
 
