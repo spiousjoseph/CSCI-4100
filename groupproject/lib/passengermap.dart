@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_map/flutter_map.dart';
 //import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:geolocator/geolocator.dart';
@@ -83,7 +84,7 @@ class PassengerMapState extends State<PassengerMap>{
                         print('Icon clicked');
 
                         Scaffold.of(context).showSnackBar(SnackBar(
-                          content: Text('Invite Sent!'),
+                          content: Text(FlutterI18n.translate(context, 'mappage.Invite')),
                         ));
 
                       },
@@ -103,7 +104,7 @@ class PassengerMapState extends State<PassengerMap>{
                         print('Icon clicked');
 
                         Scaffold.of(context).showSnackBar(SnackBar(
-                          content: Text('Invite Sent!'),
+                          content: Text(FlutterI18n.translate(context, 'mappage.Invite')),
                         ));
 
                       },
@@ -123,7 +124,7 @@ class PassengerMapState extends State<PassengerMap>{
                         print('Icon clicked');
 
                         Scaffold.of(context).showSnackBar(SnackBar(
-                          content: Text('Invite Sent!'),
+                          content: Text(FlutterI18n.translate(context, 'mappage.Invite')),
                         ));
 
                       },
