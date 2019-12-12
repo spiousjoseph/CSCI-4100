@@ -4,14 +4,18 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:flutter/rendering.dart';
 import 'package:geolocator/geolocator.dart' as prefix0;
+import 'package:groupproject/driver.dart';
 import 'package:location/location.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:latlong/latlong.dart';
 import 'passenger.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+
 
 class PassengerMap extends StatefulWidget {
-  PassengerMap({Key key, this.currentPosition}) : super(key: key);
+  PassengerMap({Key key, this.currentPosition, this.drivers}) : super(key: key);
   final Passenger currentPosition;
+  List<Driver> drivers;
 
 
   @override
@@ -21,12 +25,18 @@ class PassengerMap extends StatefulWidget {
 
 class PassengerMapState extends State<PassengerMap>{
 
-  var _geolocator = Geolocator();
+
 
   @override
   Widget build(BuildContext context) {
+
+
+
+
+
     //centre =  LatLng(_currentPosition.latitude,_currentPosition.longitude);
-    var driverLocation = LatLng( (widget.currentPosition.location.latitude + 0.00222), (widget.currentPosition.location.longitude + 0.00222) );//test location
+
+
     String mylocation = '';
     return Scaffold(
       appBar: AppBar(
@@ -71,7 +81,7 @@ class PassengerMapState extends State<PassengerMap>{
                 Marker(
                   width: 45.0,
                   height: 45.0,
-                  point: driverLocation,
+                  point: widget.drivers[0].location,
                   builder: (context) => Container(
                     child: IconButton(
                       icon: Icon(Icons.directions_car),
@@ -81,13 +91,56 @@ class PassengerMapState extends State<PassengerMap>{
                         print('Icon clicked');
 
                         Scaffold.of(context).showSnackBar(SnackBar(
-                          content: Text('Invite Sent!'),
+                          content: Text('Driver Location: ' + widget.drivers[0].locationName),
                         ));
 
                       },
                     ),
                   ),
                 ),
+
+                Marker(
+                  width: 45.0,
+                  height: 45.0,
+                  point: widget.drivers[1].location,
+                  builder: (context) => Container(
+                    child: IconButton(
+                      icon: Icon(Icons.directions_car),
+                      color: Colors.blue,
+                      iconSize: 45.0,
+                      onPressed: () {
+                        print('Icon clicked');
+
+                        Scaffold.of(context).showSnackBar(SnackBar(
+                          content: Text('Driver Location: ' + widget.drivers[0].locationName),
+                        ));
+
+                      },
+                    ),
+                  ),
+                ),
+
+                Marker(
+                  width: 45.0,
+                  height: 45.0,
+                  point: widget.drivers[2].location,
+                  builder: (context) => Container(
+                    child: IconButton(
+                      icon: Icon(Icons.directions_car),
+                      color: Colors.blue,
+                      iconSize: 45.0,
+                      onPressed: () {
+                        print('Icon clicked');
+
+                        Scaffold.of(context).showSnackBar(SnackBar(
+                          content: Text('Driver Location: ' + widget.drivers[0].locationName),
+                        ));
+
+                      },
+                    ),
+                  ),
+                ),
+
               ],
             ),
 
