@@ -41,7 +41,8 @@ class Home extends StatelessWidget {
             itemExtent: 80.0,
             itemCount: snapshot.data.documents.length,
             itemBuilder: (context, index) =>
-              _buildListItem2(context, snapshot.data.documents[index]),
+             // userUID == snapshot.data.documents[index].documentID ? _buildListItem3(context, snapshot.data.documents[index]) : Text(""),
+              _buildListItem3(context, snapshot.data.documents[index]),
           );
         }
       ),
@@ -85,6 +86,7 @@ class Home extends StatelessWidget {
   //  print("Auth UID: " + AuthService.getterForUID());
     print("userUID: " + userUID);
     print("Document ID: " + document.documentID);
+    
     return GestureDetector(
       child: ListTile(
       title: Text(document['name'].toString() + "  -----  " + document['cost'].toStringAsFixed(2) + " CAD"),
@@ -93,6 +95,22 @@ class Home extends StatelessWidget {
     onLongPress: () {
       document.reference.delete();
     },
+    );
+    
+  }
+
+
+  // For Testing, delete later.
+  Widget _buildListItem3(BuildContext context, DocumentSnapshot document) {
+    return Padding(
+      padding: EdgeInsets.only(top: 8.0),
+      child: Card(
+        margin: EdgeInsets.fromLTRB(20.0, 6.0, 20.0, 0.0),
+        child: ListTile(
+          title: Text(document['name'].toString() + "  -----  " + document['cost'].toStringAsFixed(2) + " CAD"),
+          subtitle: Text("SEATS: " + document['seats'].toString() + "   RATING: " + document['avgRating'].toString()),
+        ),
+    ),
     );
     
   }
