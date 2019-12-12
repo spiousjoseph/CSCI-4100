@@ -2,6 +2,8 @@ import 'package:groupproject/services/auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:provider/provider.dart';
+import 'package:groupproject/models/user.dart';
 
 class Home extends StatelessWidget {
 
@@ -10,6 +12,8 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final user = Provider.of<User>(context);
+    print("FINALLY: " + user.uid);
     return Container(
       child: Scaffold(
         backgroundColor: Colors.orange[100],
@@ -32,6 +36,7 @@ class Home extends StatelessWidget {
         stream: Firestore.instance.collection('Drivers').snapshots(),
         builder: (context, snapshot) {
           if (!snapshot.hasData) return const Text('Loading...');
+          
           return ListView.builder(
             itemExtent: 80.0,
             itemCount: snapshot.data.documents.length,
@@ -45,6 +50,7 @@ class Home extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           _auth.createDriverTrip('Bob', 10.00, 4, 0);
+         // print("LOOK HERE: " + _auth.getterForUID());
         },
         tooltip: 'Add driver trip',
         child: Icon(Icons.add),
@@ -77,12 +83,8 @@ class Home extends StatelessWidget {
    // print(document.documentID);
    
    //FirebaseUser user = _authCheck.currentUser();
-   if (checkSelf() == document.documentID) {
-     print('hi');
-   }
-   var temp = checkSelf();
-   print("LOOK HERE: " + _auth.getterForUID());
-
+   print("Auth UID: " + AuthService.getterForUID());
+   print("Document ID: " + document.documentID);
       return GestureDetector(
         child: ListTile(
         title: Text(document['name'].toString() + "  -----  " + document['cost'].toStringAsFixed(2) + " CAD"),
@@ -92,11 +94,5 @@ class Home extends StatelessWidget {
         document.reference.delete();
       },
       );
-  }
-
-  Future<String> checkSelf() async {
-    FirebaseUser user = await _authCheck.currentUser();
-   // String temp = (user.uid).toString();
-    return user.uid.toString();
   }
 }
