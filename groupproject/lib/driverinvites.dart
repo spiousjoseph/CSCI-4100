@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:groupproject/passengersetup.dart';
 import 'package:groupproject/driverprofile.dart';
-
+import 'notifications.dart';
 
 class DriverInvites extends StatelessWidget{
-
+  var _notifications = Notifications();
   @override
   Widget build(BuildContext context) {
     int selectedIndex = 0;
@@ -26,7 +26,7 @@ class DriverInvites extends StatelessWidget{
                     children: <Widget>[
                       RaisedButton(
                         onPressed: () {
-
+                          _notifications.sendNotificationNow('title', 'body', 'payload');
                         },
                         color: Colors.green,
                         child: Icon(Icons.check_circle),
@@ -67,4 +67,4 @@ class DriverInvites extends StatelessWidget{
 
   }
 
-}
+}  

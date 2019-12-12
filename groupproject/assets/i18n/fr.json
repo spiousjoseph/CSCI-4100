@@ -11,6 +11,11 @@
   "pregister": {
     "Name": "Prénom",
     "Destination": "Destination",
-    "DestinationHint": "Entrez la destination"
+    "DestinationHint": "Sélectionnez votre destination.",
+    "City": "Sélectionnez votre ville."
+    
+  },
+  "mappage": {
+    "Invite": "Invitation envoyée!"
   }
 }
