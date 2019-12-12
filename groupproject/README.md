@@ -14,6 +14,11 @@ Data table for passengerlist.dart does not handle selection visuals proper howev
 
 Passenger setup does not have error checking on destination. So if an address is inputed that is not an actual address program will result in an error and potentially crash.
 
+## Contributions
+
+All contributors feel we worked on the program equally and helped each other alot.
+
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
