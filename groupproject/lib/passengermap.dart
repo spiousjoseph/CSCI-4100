@@ -36,6 +36,32 @@ class PassengerMapState extends State<PassengerMap>{
     return Scaffold(
       appBar: AppBar(
         title: Text('Map'),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.help),
+            onPressed: (){
+              showDialog<void>(
+                barrierDismissible: false, // user must tap button!
+                context: context,
+                builder: (BuildContext context) {
+                  return AlertDialog(
+                    title: Text('Help Info'),
+                    content: Text('Tap on your Icon to see your current Location. \n Tap on car icons to send invites. \n Tap on Star Icon to see your Destination Location.' ),
+                    actions: <Widget>[
+                      FlatButton(
+                        child: Text('Close'),
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                      ),
+                    ],
+                  );
+                },
+              );
+            },
+          ),
+          
+        ],
       ),
       body: Center(
         child: FlutterMap(
@@ -167,6 +193,7 @@ class PassengerMapState extends State<PassengerMap>{
           ],
         ),
       ),
+
 
     );
   }
