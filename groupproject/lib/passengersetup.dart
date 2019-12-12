@@ -60,15 +60,19 @@ class PassengerSetupState extends State<PassengerSetup> {
   }
 
 
-  Future<LatLng> updateDestination(String destination) async {
+  void updateDestination(String destination)  {
     //String address = '301 Front St W, Toronto, ON';
-    var destinationlatlng;
-    List<Placemark> placemark = await Geolocator().placemarkFromAddress(destination);
-    for (Placemark place in placemark) {
-      destinationlatlng = LatLng(place.position.latitude, place.position.longitude);
 
-    }
-    return destinationlatlng;
+    _geolocator.placemarkFromAddress(destination).then((List<Placemark> places) {
+      print('Forward geocoding results:');
+      for (Placemark place in places) {
+        desLatLng = LatLng(place.position.latitude, place.position.longitude);
+         print('\t${place.name}, ${place.subThoroughfare}, ${place.thoroughfare}, ${place.locality}, ${place.subAdministrativeArea}');
+        print('\t${place.position.latitude}, ${place.position.longitude},');
+      }
+    });
+
+
   }
 
 
@@ -152,25 +156,36 @@ class PassengerSetupState extends State<PassengerSetup> {
                 );
               }).toList(),
               onChanged: (String newValue) {
-                setState(() async {
+                setState(() {
                   _city = newValue;
 
                 });
               },
             ),
+            RaisedButton(
+              onPressed: ()  {
+                print('Button Pressed');
+                print(_controllerDestination.text.toString() + ', ' + _city);
+                updateDestination(_controllerDestination.text.toString() + ', ' + _city);
+              },
+              textColor: Colors.white,
+              color: Color(0xFFFF9900),
+              child: Text('Confirm Before Submit', style: TextStyle(fontSize: 15),),
+
+            ),
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () async {
-
+        onPressed: ()  {
+          //desLatLng =  await updateDestination(_controllerDestination.text.toString() + ', ' + _city);
 
           Passenger passenger = Passenger(
             name: _controllerName.toString(),
             destination: _controllerDestination.text.toString() + ', ' + _city,
             location: centre,
             locationName: LocationName,
-            destinationlatlng: await updateDestination(_controllerDestination.text.toString() + ', ' + _city),
+            destinationlatlng: desLatLng,
           );
 
 

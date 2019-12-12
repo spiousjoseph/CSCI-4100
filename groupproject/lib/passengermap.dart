@@ -29,7 +29,7 @@ class PassengerMapState extends State<PassengerMap>{
 
   @override
   Widget build(BuildContext context) {
-    var path = [widget.currentPosition.location, widget.currentPosition.destinationlatlng];
+    //var path = [widget.currentPosition.location, widget.currentPosition.destinationlatlng];
     //centre =  LatLng(_currentPosition.latitude,_currentPosition.longitude);
     var driverLocation = LatLng( (widget.currentPosition.location.latitude + 0.00222), (widget.currentPosition.location.longitude + 0.00222) );//test location
     String mylocation = '';
@@ -40,7 +40,7 @@ class PassengerMapState extends State<PassengerMap>{
       body: Center(
         child: FlutterMap(
           options: MapOptions(
-            minZoom: 15.0,
+            minZoom: 14.0,
             center: widget.currentPosition.location,
           ),
           layers: [
@@ -65,7 +65,9 @@ class PassengerMapState extends State<PassengerMap>{
                       color: Colors.blue,
                       iconSize: 45.0,
                       onPressed: () {
+                        print('Icon clicked');
                         mylocation = 'Current Location: ' + widget.currentPosition.locationName;
+                        print(mylocation);
                         Scaffold.of(context).showSnackBar(SnackBar(
                           content: Text(mylocation),
                         ));
@@ -154,17 +156,13 @@ class PassengerMapState extends State<PassengerMap>{
                   ),
                 ),
 
+
+
               ],
             ),
-            PolylineLayerOptions(
-              polylines: [
-                Polyline(
-                  points: path,
-                  strokeWidth: 2.0,
-                  color: Colors.blue,
-                ),
-              ],
-            ),
+
+
+
 
           ],
         ),
