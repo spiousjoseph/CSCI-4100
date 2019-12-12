@@ -10,8 +10,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:latlong/latlong.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'passenger.dart';
-import 'package:groupproject/driver.dart';
-
 
 class PassengerSetup extends StatefulWidget {
   @override
@@ -44,21 +42,6 @@ class PassengerSetupState extends State<PassengerSetup> {
     });
 
   }
-  
-  String getLocationName(LatLng userLocation){
-    String thislocationname;
-
-    _geolocator.placemarkFromCoordinates(userLocation.latitude, userLocation.longitude).then((List<Placemark> places) {
-      print('Reverse geocoding results:');
-      for (Placemark place in places) {
-        print('\t${place.name}, ${place.subThoroughfare}, ${place.thoroughfare}, ${place.locality}, ${place.subAdministrativeArea}');
-        thislocationname = '\t${place.subThoroughfare}, ${place.thoroughfare}, ${place.locality}';
-      }
-    });
-    
-    return thislocationname;
-  }
-  
 
 
   void updateDestination(destination){
@@ -161,41 +144,9 @@ class PassengerSetupState extends State<PassengerSetup> {
             locationName: LocationName,
           );
 
-
-
-          Driver d1 = new Driver(
-            name: 'John Snow',
-            car: 'Honda Civic',
-            seats: 2,
-            location: LatLng( (centre.latitude + 0.00222), (centre.longitude + 0.00222) ),
-            locationName: getLocationName(LatLng( (centre.latitude + 0.00222), (centre.longitude + 0.00222) )),
-          );
-          Driver d2 = new Driver(
-            name: 'DIO',
-            car: 'Lamborghini Aventador',
-            seats: 1,
-            location: LatLng( (centre.latitude - 0.00222), (centre.longitude + 0.00222) ),
-            locationName: getLocationName(LatLng( (centre.latitude - 0.00222), (centre.longitude + 0.00222) )),
-          );
-          Driver d3 = new Driver(
-            name: 'Bob Lee',
-            car: 'Tesla Model 3',
-            seats: 2,
-            location: LatLng( (centre.latitude - 0.00222), (centre.longitude - 0.00222) ),
-            locationName: getLocationName(LatLng( (centre.latitude - 0.00222), (centre.longitude - 0.00222) )),
-          );
-
-
-
-          List<Driver> drivers = [d1, d2, d3];
-
-
-
-
-
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => PassengerMap(currentPosition: passenger, drivers: drivers,)),
+            MaterialPageRoute(builder: (context) => PassengerMap(currentPosition: passenger,)),
           );
         },
         child: Icon(Icons.check),
