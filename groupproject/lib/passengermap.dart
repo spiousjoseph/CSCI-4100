@@ -8,10 +8,12 @@ import 'package:location/location.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:latlong/latlong.dart';
 import 'passenger.dart';
+import 'package:groupproject/driver.dart';
 
 class PassengerMap extends StatefulWidget {
-  PassengerMap({Key key, this.currentPosition}) : super(key: key);
+  PassengerMap({Key key, this.currentPosition, this.drivers}) : super(key: key);
   final Passenger currentPosition;
+  List<Driver> drivers;
 
 
   @override
@@ -71,7 +73,7 @@ class PassengerMapState extends State<PassengerMap>{
                 Marker(
                   width: 45.0,
                   height: 45.0,
-                  point: driverLocation,
+                  point: widget.drivers[0].location,
                   builder: (context) => Container(
                     child: IconButton(
                       icon: Icon(Icons.directions_car),
@@ -88,6 +90,49 @@ class PassengerMapState extends State<PassengerMap>{
                     ),
                   ),
                 ),
+                Marker(
+                  width: 45.0,
+                  height: 45.0,
+                  point: widget.drivers[1].location,
+                  builder: (context) => Container(
+                    child: IconButton(
+                      icon: Icon(Icons.directions_car),
+                      color: Colors.blue,
+                      iconSize: 45.0,
+                      onPressed: () {
+                        print('Icon clicked');
+
+                        Scaffold.of(context).showSnackBar(SnackBar(
+                          content: Text('Invite Sent!'),
+                        ));
+
+                      },
+                    ),
+                  ),
+                ),
+                Marker(
+                  width: 45.0,
+                  height: 45.0,
+                  point: widget.drivers[2].location,
+                  builder: (context) => Container(
+                    child: IconButton(
+                      icon: Icon(Icons.directions_car),
+                      color: Colors.blue,
+                      iconSize: 45.0,
+                      onPressed: () {
+                        print('Icon clicked');
+
+                        Scaffold.of(context).showSnackBar(SnackBar(
+                          content: Text('Invite Sent!'),
+                        ));
+
+                      },
+                    ),
+                  ),
+                ),
+
+
+
               ],
             ),
 

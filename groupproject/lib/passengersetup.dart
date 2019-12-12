@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart' as prefix0;
-
-//import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'passengermap.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:flutter/rendering.dart';
@@ -10,6 +8,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:latlong/latlong.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'passenger.dart';
+import 'package:groupproject/driver.dart';
 
 class PassengerSetup extends StatefulWidget {
   @override
@@ -17,8 +16,8 @@ class PassengerSetup extends StatefulWidget {
 }
 
 class PassengerSetupState extends State<PassengerSetup> {
-  final TextEditingController _controllerName = new TextEditingController();
-  final TextEditingController _controllerDestination = new TextEditingController();
+  final TextEditingController _controllerName = new TextEditingController(text: 'John Bob');
+  final TextEditingController _controllerDestination = new TextEditingController(text: '1265 Military Trail');
   String _city;
   String LocationName = '';
   var _geolocator = Geolocator();
@@ -36,11 +35,24 @@ class PassengerSetupState extends State<PassengerSetup> {
     _geolocator.placemarkFromCoordinates(userLocation.latitude, userLocation.longitude).then((List<Placemark> places) {
       print('Reverse geocoding results:');
       for (Placemark place in places) {
-        print('\t${place.name}, ${place.subThoroughfare}, ${place.thoroughfare}, ${place.locality}, ${place.subAdministrativeArea}');
+        //print('\t${place.name}, ${place.subThoroughfare}, ${place.thoroughfare}, ${place.locality}, ${place.subAdministrativeArea}');
         LocationName = '\t${place.subThoroughfare}, ${place.thoroughfare}, ${place.locality}';
       }
     });
 
+  }
+  String getLocationName(LatLng userLocation){
+    String thislocationname;
+
+    _geolocator.placemarkFromCoordinates(userLocation.latitude, userLocation.longitude).then((List<Placemark> places) {
+      print('Reverse geocoding results:');
+      for (Placemark place in places) {
+       // print('\t${place.name}, ${place.subThoroughfare}, ${place.thoroughfare}, ${place.locality}, ${place.subAdministrativeArea}');
+        thislocationname = '\t${place.subThoroughfare}, ${place.thoroughfare}, ${place.locality}';
+      }
+    });
+
+    return thislocationname;
   }
 
 
@@ -49,7 +61,7 @@ class PassengerSetupState extends State<PassengerSetup> {
     _geolocator.placemarkFromAddress(address).then((List<Placemark> places) {
       print('Forward geocoding results:');
       for (Placemark place in places) {
-        print('\t${place.name}, ${place.subThoroughfare}, ${place.thoroughfare}, ${place.locality}, ${place.subAdministrativeArea}');
+        //print('\t${place.name}, ${place.subThoroughfare}, ${place.thoroughfare}, ${place.locality}, ${place.subAdministrativeArea}');
       }
     });
   }
@@ -116,7 +128,7 @@ class PassengerSetupState extends State<PassengerSetup> {
             ),
             DropdownButtonFormField(
               decoration: const InputDecoration(
-                labelText: 'City',
+                labelText: 'Select your city.',
               ),
               value: _city,
               items: <String>['Toronto, ON', 'Oshawa, ON ']
@@ -144,9 +156,37 @@ class PassengerSetupState extends State<PassengerSetup> {
             locationName: LocationName,
           );
 
+
+          Driver d1 = new Driver(
+            name: 'John Snow',
+            car: 'Honda Civic',
+            seats: 2,
+            location: LatLng( (centre.latitude + 0.00222), (centre.longitude + 0.00222) ),
+            locationName: getLocationName(LatLng( (centre.latitude + 0.00222), (centre.longitude + 0.00222) )),
+          );
+          Driver d2 = new Driver(
+            name: 'DIO',
+            car: 'Lamborghini Aventador',
+            seats: 1,
+            location: LatLng( (centre.latitude - 0.00222), (centre.longitude + 0.00222) ),
+            locationName: getLocationName(LatLng( (centre.latitude - 0.00222), (centre.longitude + 0.00222) )),
+          );
+          Driver d3 = new Driver(
+            name: 'Bob Lee',
+            car: 'Tesla Model 3',
+            seats: 2,
+            location: LatLng( (centre.latitude - 0.00222), (centre.longitude - 0.00222) ),
+            locationName: getLocationName(LatLng( (centre.latitude - 0.00222), (centre.longitude - 0.00222) )),
+          );
+
+          List<Driver> drivers = [d1, d2, d3];
+
+
+
+
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => PassengerMap(currentPosition: passenger,)),
+            MaterialPageRoute(builder: (context) => PassengerMap(currentPosition: passenger, drivers: drivers,)),
           );
         },
         child: Icon(Icons.check),
