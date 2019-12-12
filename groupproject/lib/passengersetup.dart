@@ -164,6 +164,27 @@ class PassengerSetupState extends State<PassengerSetup> {
             ),
             RaisedButton(
               onPressed: ()  {
+
+                showDialog<void>(
+                  barrierDismissible: false, // user must tap button!
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      title: Text('Important Info'),
+                      content: Text('Your Destination has been saved. \n Destination: \n' + _controllerDestination.text.toString() + ', ' + _city),
+                      actions: <Widget>[
+                        FlatButton(
+                          child: Text('Close'),
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                        ),
+                      ],
+                    );
+                  },
+                );
+
+
                 print('Button Pressed');
                 print(_controllerDestination.text.toString() + ', ' + _city);
                 updateDestination(_controllerDestination.text.toString() + ', ' + _city);

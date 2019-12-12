@@ -19,7 +19,10 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  cloud_firestore:
+  firebase_auth: ^0.14.0+5
+  cloud_firestore: ^0.12.9+4
+  provider: ^3.1.0
+  flutter_spinkit: "^4.0.0"
   flutter_i18n:
   
   # The following adds the Cupertino Icons font to your application.
@@ -29,7 +32,7 @@ dependencies:
   geolocator: '5.1.1'
   latlong:
   flutter_map:
-  data_tables: ^1.0.1
+  
 
 
 

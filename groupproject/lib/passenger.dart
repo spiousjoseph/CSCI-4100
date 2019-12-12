@@ -4,14 +4,13 @@ import 'package:latlong/latlong.dart';
 //import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Passenger{
-  Passenger({this.name, this.reference, this.destination, this.location, this.locationName, this.destinationlatlng, this.selected});
+  Passenger({this.name, this.reference, this.destination, this.location, this.locationName, this.destinationlatlng});
   String name;
   String reference;
   String destination;
   String locationName;
   LatLng location;
   LatLng destinationlatlng;
-  bool selected=false;
   //DocumentReference reference;
 
   Passenger.fromMap(Map<String,dynamic> map, {this.reference}){

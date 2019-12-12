@@ -2,6 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:groupproject/driversetup.dart';
 import 'package:groupproject/passengersetup.dart';
 
+import 'package:groupproject/services/auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:provider/provider.dart';
+import 'package:groupproject/models/user.dart';
+
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
   final String title;
@@ -12,29 +17,44 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
 
+  final AuthService _auth = AuthService();
 
   @override
   Widget build(BuildContext context) {
 
-    return Scaffold(
-      appBar: AppBar(
-
-        title: Text(widget.title),
-      ),
-      body: Center(
+    return Container(
+      child: Scaffold(
+        appBar: AppBar(
+            title: Text('OnTech Carpool'),
+            backgroundColor: Colors.orange[400],
+            elevation: 0.0,
+            actions: <Widget>[
+              FlatButton.icon(
+                icon: Icon(Icons.person),
+                label: Text('logout'),
+                onPressed: () async {
+                  await _auth.signOut();
+                },
+              ),
+            ],
+          ),
+        body: Center(
 
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            RaisedButton(
-              onPressed: () {
-                Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => DriverSetupPage()),
-                );
-              },
-              textColor: Colors.white,
-              color: Color(0xFFFF9900),
-              child: Text('Driver', style: TextStyle(fontSize: 20),),
+            Padding(
+              padding: EdgeInsets.only(bottom: 40.0),
+              child: RaisedButton(
+                onPressed: () {
+                  Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => DriverSetupPage()),
+                  );
+                },
+                textColor: Colors.white,
+                color: Color(0xFFFF9900),
+                child: Text('Driver', style: TextStyle(fontSize: 30),),
+              ),
             ),
             RaisedButton(
               onPressed: () {
@@ -44,12 +64,13 @@ class _MyHomePageState extends State<MyHomePage> {
               },
               textColor: Colors.white,
               color: Color(0xFFFF9900),
-              child: Text('Passenger', style: TextStyle(fontSize: 20),),
+              child: Text('Passenger', style: TextStyle(fontSize: 30),),
             ),
           ],
         ),
       ),
 
+     ),
     );
   }
 }
