@@ -7,11 +7,12 @@ import 'package:groupproject/models/user.dart';
 class Home extends StatelessWidget {
 
   final AuthService _auth = AuthService();
-
+  String userUID = "";
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<User>(context);
-    print("FINALLY: " + user.uid);
+    userUID = user.uid;
+    print("FINALLYY: " + userUID);
 
     return Container(
       child: Scaffold(
@@ -82,16 +83,17 @@ class Home extends StatelessWidget {
    // print(document.documentID);
    
   //  print("Auth UID: " + AuthService.getterForUID());
-  //  print("Document ID: " + document.documentID);
-
-      return GestureDetector(
-        child: ListTile(
-        title: Text(document['name'].toString() + "  -----  " + document['cost'].toStringAsFixed(2) + " CAD"),
-        subtitle: Text("SEATS: " + document['seats'].toString() + "   RATING: " + document['avgRating'].toString()),
-      ),
-      onLongPress: () {
-        document.reference.delete();
-      },
-      );
+    print("userUID: " + userUID);
+    print("Document ID: " + document.documentID);
+    return GestureDetector(
+      child: ListTile(
+      title: Text(document['name'].toString() + "  -----  " + document['cost'].toStringAsFixed(2) + " CAD"),
+      subtitle: Text("SEATS: " + document['seats'].toString() + "   RATING: " + document['avgRating'].toString()),
+    ),
+    onLongPress: () {
+      document.reference.delete();
+    },
+    );
+    
   }
 }
