@@ -7,6 +7,7 @@ class DriverInvites extends StatelessWidget{
   var _notifications = Notifications();
   @override
   Widget build(BuildContext context) {
+    _notifications.init();
     int selectedIndex = 0;
     return Scaffold(
       appBar: AppBar(
@@ -26,7 +27,7 @@ class DriverInvites extends StatelessWidget{
                     children: <Widget>[
                       RaisedButton(
                         onPressed: () {
-                          _notifications.sendNotificationNow('title', 'body', 'payload');
+                          _notifications.sendNotificationNow('Passenger Accepted', '', '');
                         },
                         color: Colors.green,
                         child: Icon(Icons.check_circle),
