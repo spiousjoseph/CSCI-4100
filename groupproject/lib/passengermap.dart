@@ -26,8 +26,10 @@ class PassengerMapState extends State<PassengerMap>{
 
   var _geolocator = Geolocator();
 
+
   @override
   Widget build(BuildContext context) {
+    var path = [widget.currentPosition.location, widget.currentPosition.destinationlatlng];
     //centre =  LatLng(_currentPosition.latitude,_currentPosition.longitude);
     var driverLocation = LatLng( (widget.currentPosition.location.latitude + 0.00222), (widget.currentPosition.location.longitude + 0.00222) );//test location
     String mylocation = '';
@@ -38,7 +40,7 @@ class PassengerMapState extends State<PassengerMap>{
       body: Center(
         child: FlutterMap(
           options: MapOptions(
-            minZoom: 16.0,
+            minZoom: 15.0,
             center: widget.currentPosition.location,
           ),
           layers: [
@@ -131,24 +133,41 @@ class PassengerMapState extends State<PassengerMap>{
                     ),
                   ),
                 ),
+                Marker(
+                  width: 45.0,
+                  height: 45.0,
+                  point: widget.currentPosition.destinationlatlng,
+                  builder: (context) => Container(
+                    child: IconButton(
+                      icon: Icon(Icons.star),
+                      color: Colors.blue,
+                      iconSize: 45.0,
+                      onPressed: () {
+                        print('Icon clicked');
 
+                        Scaffold.of(context).showSnackBar(SnackBar(
+                          content: Text('Destination: ' + widget.currentPosition.destination),
+                        ));
 
+                      },
+                    ),
+                  ),
+                ),
 
+              ],
+            ),
+            PolylineLayerOptions(
+              polylines: [
+                Polyline(
+                  points: path,
+                  strokeWidth: 2.0,
+                  color: Colors.blue,
+                ),
               ],
             ),
 
           ],
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          //print('I WANNA GO HERE:');
-          //print(widget.currentPosition.destination);
-          //refresh page
-
-        },
-        tooltip: 'Update',
-        child: Icon(Icons.update),
       ),
 
     );

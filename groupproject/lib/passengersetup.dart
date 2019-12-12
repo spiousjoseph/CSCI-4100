@@ -17,13 +17,15 @@ class PassengerSetup extends StatefulWidget {
 
 class PassengerSetupState extends State<PassengerSetup> {
   final TextEditingController _controllerName = new TextEditingController(text: 'John Bob');
-  final TextEditingController _controllerDestination = new TextEditingController(text: '1265 Military Trail');
+  final TextEditingController _controllerDestination = new TextEditingController(text: '2000 Simcoe St N');
   String _city;
   String LocationName = '';
   var _geolocator = Geolocator();
+  LatLng desLatLng;
   var centre;
 
-  String address = '17 Roscoe Rd, Toronto, ON';
+  //left for debugging
+  //String address = '17 Roscoe Rd, Toronto, ON';
   //String address = '2000 Simcoe St N, Oshawa, ON';
 
   void _updateLocation(userLocation) {
@@ -33,19 +35,21 @@ class PassengerSetupState extends State<PassengerSetup> {
 
     });
     _geolocator.placemarkFromCoordinates(userLocation.latitude, userLocation.longitude).then((List<Placemark> places) {
-      print('Reverse geocoding results:');
+      //print('Reverse geocoding results:');
       for (Placemark place in places) {
         //print('\t${place.name}, ${place.subThoroughfare}, ${place.thoroughfare}, ${place.locality}, ${place.subAdministrativeArea}');
         LocationName = '\t${place.subThoroughfare}, ${place.thoroughfare}, ${place.locality}';
       }
     });
 
+
+
   }
   String getLocationName(LatLng userLocation){
     String thislocationname;
 
     _geolocator.placemarkFromCoordinates(userLocation.latitude, userLocation.longitude).then((List<Placemark> places) {
-      print('Reverse geocoding results:');
+      //print('Reverse geocoding results:');
       for (Placemark place in places) {
        // print('\t${place.name}, ${place.subThoroughfare}, ${place.thoroughfare}, ${place.locality}, ${place.subAdministrativeArea}');
         thislocationname = '\t${place.subThoroughfare}, ${place.thoroughfare}, ${place.locality}';
@@ -56,15 +60,18 @@ class PassengerSetupState extends State<PassengerSetup> {
   }
 
 
-  void updateDestination(destination){
+  Future<LatLng> updateDestination(String destination) async {
     //String address = '301 Front St W, Toronto, ON';
-    _geolocator.placemarkFromAddress(address).then((List<Placemark> places) {
-      print('Forward geocoding results:');
-      for (Placemark place in places) {
-        //print('\t${place.name}, ${place.subThoroughfare}, ${place.thoroughfare}, ${place.locality}, ${place.subAdministrativeArea}');
-      }
-    });
+    var destinationlatlng;
+    List<Placemark> placemark = await Geolocator().placemarkFromAddress(destination);
+    for (Placemark place in placemark) {
+      destinationlatlng = LatLng(place.position.latitude, place.position.longitude);
+
+    }
+    return destinationlatlng;
   }
+
+
 
   @override
   void initState() {
@@ -86,6 +93,9 @@ class PassengerSetupState extends State<PassengerSetup> {
 
   @override
   Widget build(BuildContext context) {
+
+
+
     return Scaffold(
       appBar: AppBar(title: Text('Passenger Setup'),
           actions: <Widget>[
@@ -116,6 +126,7 @@ class PassengerSetupState extends State<PassengerSetup> {
                 labelText: (FlutterI18n.translate(context, 'pregister.Name')),
                 hintText: (FlutterI18n.translate(context, 'register.NameHint')),
               ),
+
             ),
             TextField(
               controller: _controllerDestination,
@@ -125,13 +136,15 @@ class PassengerSetupState extends State<PassengerSetup> {
                 hintText: (FlutterI18n.translate(
                     context, 'pregister.DestinationHint')),
               ),
+
+
             ),
             DropdownButtonFormField(
               decoration: const InputDecoration(
                 labelText: 'Select your city.',
               ),
               value: _city,
-              items: <String>['Toronto, ON', 'Oshawa, ON ']
+              items: <String>['Toronto, ON', 'Oshawa, ON']
                   .map<DropdownMenuItem<String>>((String item) {
                 return DropdownMenuItem<String>(
                   value: item,
@@ -139,8 +152,9 @@ class PassengerSetupState extends State<PassengerSetup> {
                 );
               }).toList(),
               onChanged: (String newValue) {
-                setState(() {
+                setState(() async {
                   _city = newValue;
+
                 });
               },
             ),
@@ -148,15 +162,19 @@ class PassengerSetupState extends State<PassengerSetup> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
+        onPressed: () async {
+
+
           Passenger passenger = Passenger(
             name: _controllerName.toString(),
             destination: _controllerDestination.text.toString() + ', ' + _city,
             location: centre,
             locationName: LocationName,
+            destinationlatlng: await updateDestination(_controllerDestination.text.toString() + ', ' + _city),
           );
 
 
+          //driver dummies
           Driver d1 = new Driver(
             name: 'John Snow',
             car: 'Honda Civic',
