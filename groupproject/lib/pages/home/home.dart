@@ -1,19 +1,18 @@
 import 'package:groupproject/services/auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:provider/provider.dart';
 import 'package:groupproject/models/user.dart';
 
 class Home extends StatelessWidget {
 
   final AuthService _auth = AuthService();
-  final FirebaseAuth _authCheck = FirebaseAuth.instance;
 
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<User>(context);
     print("FINALLY: " + user.uid);
+
     return Container(
       child: Scaffold(
         backgroundColor: Colors.orange[100],
@@ -82,9 +81,9 @@ class Home extends StatelessWidget {
     // document.reference.updateData({'sid' : document['sid'] + 1});
    // print(document.documentID);
    
-   //FirebaseUser user = _authCheck.currentUser();
-   print("Auth UID: " + AuthService.getterForUID());
-   print("Document ID: " + document.documentID);
+  //  print("Auth UID: " + AuthService.getterForUID());
+  //  print("Document ID: " + document.documentID);
+
       return GestureDetector(
         child: ListTile(
         title: Text(document['name'].toString() + "  -----  " + document['cost'].toStringAsFixed(2) + " CAD"),
