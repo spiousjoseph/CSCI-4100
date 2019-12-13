@@ -6,7 +6,9 @@
     "DriversLicense": "Drivers License",
     "NameHint": "Enter Your Name",
     "CarHint": "Enter Your Vehicle Make and Model",
-    "LicenseHint": "Enter your Driver's License Information"
+    "LicenseHint": "Enter your Driver's License Information",
+    "DesOrig":"Destination / Origin",
+    "CostPass":"Cost per Passenger",
   },
   "pregister": {
     "Name": "Name",
