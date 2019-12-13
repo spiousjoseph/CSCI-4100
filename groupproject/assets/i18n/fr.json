@@ -6,7 +6,9 @@
     "DriversLicense": "Permis de Conduire",
     "NameHint": "Entrez votre nom",
     "CarHint": "Entrez la marque et le modèle de votre véhicule",
-    "LicenseHint": "Entrez les informations de votre permis de conduire"
+    "LicenseHint": "Entrez les informations de votre permis de conduire",
+    "DesOrig":"Destination / d'origine",
+    "CostPass":"Coût par passager"
   },
   "pregister": {
     "Name": "Prénom",
