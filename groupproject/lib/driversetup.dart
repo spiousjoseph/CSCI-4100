@@ -73,32 +73,32 @@ class DriverSetup extends State<DriverSetupPage>{
             children: <Widget>[
               SizedBox(height: 30.0),
               TextFormField(
-                decoration: textInputDecoration.copyWith(hintText: 'Name'),
-                validator: (val) => val.isEmpty ? 'Enter your name' : null,
+                decoration: textInputDecoration.copyWith(hintText: (FlutterI18n.translate(context, 'register.NameHint')),),
+                validator: (val) => val.isEmpty ? (FlutterI18n.translate(context, 'register.NameHint')) : null,
                 onChanged: (val) {
                   setState(() => _name = val);
                 },
               ),
               SizedBox(height: 30.0),
               TextFormField(
-                decoration: textInputDecoration.copyWith(hintText: 'Origin / Destination'),
-                validator: (val) => val.isEmpty ? 'Please enter the origin and destination of trip' : null,
+                decoration: textInputDecoration.copyWith(hintText: (FlutterI18n.translate(context, 'register.DesOrig'))),
+                validator: (val) => val.isEmpty ? (FlutterI18n.translate(context, 'register.OriginDestination')) : null,
                 onChanged: (val) {
                   setState(() => _originDestination = val);
                 },
               ),
               SizedBox(height: 30.0),
               TextFormField(
-                decoration: textInputDecoration.copyWith(hintText: 'Cost per Passenger'),
-                validator: (val) => val.isEmpty ? 'Please enter a price' : null,
+                decoration: textInputDecoration.copyWith(hintText: (FlutterI18n.translate(context, 'register.CostPass'))),
+                validator: (val) => val.isEmpty ? (FlutterI18n.translate(context, 'register.Price')) : null,
                 onChanged: (val) {
                   setState(() => _cost = val);
                 },
               ),
               SizedBox(height: 30.0),
               TextFormField(
-                decoration: textInputDecoration.copyWith(hintText: 'Number of Seats'),
-                validator: (val) => val.isEmpty ? 'Please a number of availible seats' : null,
+                decoration: textInputDecoration.copyWith(hintText: (FlutterI18n.translate(context, 'register.NumberofSeats'))),
+                validator: (val) => val.isEmpty ? (FlutterI18n.translate(context, 'register.Seats')) : null,
                 onChanged: (val) {
                   setState(() => _numOfSeats = val);
                 },
@@ -127,7 +127,7 @@ class DriverSetup extends State<DriverSetupPage>{
               // Comment out after check is implemented
               SizedBox(height: 50.0),
               Text(
-                "CAUTION: Only one trip is allowed at a time. Updating values with an exist trip up will replace those values",
+                (FlutterI18n.translate(context, 'register.Warn')),
                 style: TextStyle(color: Colors.white, fontSize: 15.0),
               ),
             ],
