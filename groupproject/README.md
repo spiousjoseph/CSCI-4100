@@ -34,6 +34,7 @@ The plus button,
 3.The function to retrieve notes is on the school, but due to a brain fart I could not find a way to display it on screen in time.
 ```
 Features Coming Soon in the next path: If you are a passenger,
+```
 1.Under the passenger tab, you can view all the posted trips and their info
 2.A map will open up and locate nearby drivers heading in the same direction
 3.Tap on one of the drivers and request to join them today.
