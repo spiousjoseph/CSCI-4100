@@ -36,6 +36,8 @@ PolylineLayer break interaction of markers which leads to breaking snackbars but
 
 Passenger Setup crashes when a text field is submitted without data inside of it. 
 
+## Additional Notes. 
+Our Database may expire since it's in test mode and don't know whether not it will expire before the 17th. Please contact us if there is a cloudbase issue.  
 
 ## Contributions
 
