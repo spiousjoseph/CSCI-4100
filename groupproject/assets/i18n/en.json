@@ -7,10 +7,10 @@
     "DriversLicense": "Drivers License",
     "NameHint": "Enter Your Name",
     "CarHint": "Enter Your Vehicle Make and Model",
-    "LicenseHint": "Enter your Driver's License Information"
-    "OriginDestination" : "Please enter the origin and destination of trip"
-    "Price": "Please enter a price"
-    "Seats" : "Please a number of available seats "
+    "LicenseHint": "Enter your Driver's License Information",
+    "OriginDestination" : "Please enter the origin and destination of trip",
+    "Price": "Please enter a price",
+    "Seats" : "Please a number of available seats ",
     "Warn": "CAUTION: Only one trip is allowed at a time. Updating values with an exist trip up will replace those values"
     
   },
