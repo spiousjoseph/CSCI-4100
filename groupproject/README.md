@@ -6,25 +6,39 @@ We have made a carpool app that allows users to connect with drivers and carpool
 
 ## Features
 
-Cloud storage for all of your data, Functional map with geolocation tools added to quickly help find drivers near you, English and French localization support, Easy to read User interface to make life easier, Every tool you will need to help manage your carpool needs. Future updates will include chat functionality, In-App money transfers to send help the driver with gas costs, Camera functionailty for the driver to take a picture of their gas bill, Update notifications to show driver information on tap from the passenger map view, and much more.
+Cloud storage for all of your data INCLUDING authentication, Functional map with geolocation tools added to quickly help find drivers near you, English and French localization support, Easy to read User interface to make life easier.
 
 ## How to use
 
-After compiling and running the application. Sign up at the home screen (or if you want to bypass this and just test the rest username: sunu@gmail.com qqq111)
-After successful login select whether you want to setup as a driver or passenger,
+After compiling and running the application. Sign up at the home screen. If you type in something like kjahsdkjhas for email, it will throw an error msg. Must use a proper email text like Randy@gmail.com etc. Password Must be 6 or more characters long. (or if you want to bypass this and just test the rest username: sunu@gmail.com qqq111). Using Sign Up and creating an account is recommended. 
+
+User will remained log in even after shutting down app, until they press logout.
+
+After successful login select whether you want to setup as a driver or passenger.
 
 If you are a driver,
 ```
-1.Enter your driver information
+1.Under Driver, you can create a trip here to be posted. (can also update it here).
 2.Then sit back and relax as passengers around find you
-3.Any requests will appear in the invite screen and you can manage people in your car
+3.View your posted trip under "My Driving Trip"
 ```
-If you are a passenger,
+To take a trip as a passenger,
 ```
-1.Enter your information
+1.Under Driver, you can create a trip here to be posted. (can also update it here).
+2.The driver's phone number is displayed for you to call if you are interested in carpooling with that driver.
+```
+The plus button,
+```
+1.This is where users can keep any personal notes they would like to jot down
+2.This is stored locally. The function to store that info is working properly (as shown in the console log)
+3.The function to retrieve notes is on the school, but due to a brain fart I could not find a way to display it on screen in time.
+```
+Features Coming Soon in the next path: If you are a passenger,
+1.Under the passenger tab, you can view all the posted trips and their info
 2.A map will open up and locate nearby drivers heading in the same direction
 3.Tap on one of the drivers and request to join them today.
 4.If you are lost on where the map marker is sent no worries just tap on to yourself.
+5.The silly billy programmers forgot to add a delete function for the driver to delete their trip in time, though this implementation is super easy so it will come next patch, just call delete() to the Drivers database that has a UID maching the current user's UID.
 ```
 ## Known Bugs
 
@@ -38,17 +52,3 @@ PolylineLayer break interaction of markers which leads to breaking snackbars but
 ## Contributions
 
 All contributors feel we worked on the program equally and helped each other alot.
-
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
