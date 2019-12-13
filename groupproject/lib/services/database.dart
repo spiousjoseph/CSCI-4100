@@ -20,12 +20,12 @@ class DatabaseService {
   }
 
   // Used as default values when a user creates a driver trip
-  Future<void> updateDriverData(String name, double cost, int seats, double avgRating) async {
+  Future<void> updateDriverData(String name, String originDest, String cost, String seats) async {
     return await driverCollection.document(uid).setData({
       'name': name,
+      'originDest': originDest,
       'cost': cost,
       'seats': seats,
-      'avgRating': avgRating,
     });
   }
 

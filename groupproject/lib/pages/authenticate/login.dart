@@ -39,11 +39,17 @@ class _SignInState extends State<SignIn> {
       ),
       body: Container(
         padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/login.jpg'),
+            fit: BoxFit.cover,
+          ),
+        ),
         child: Form(
           key: _formKey,
           child: Column(
             children: <Widget>[
-              SizedBox(height: 20.0),
+              SizedBox(height: 50.0),
               TextFormField(
                 decoration: textInputDecoration.copyWith(hintText: 'email'),
                 validator: (val) => val.isEmpty ? 'Enter email' : null,
@@ -51,7 +57,7 @@ class _SignInState extends State<SignIn> {
                   setState(() => email = val);
                 },
               ),
-              SizedBox(height: 20.0),
+              SizedBox(height: 50.0),
               TextFormField(
                 obscureText: true,
                 decoration: textInputDecoration.copyWith(hintText: 'password'),
@@ -62,7 +68,7 @@ class _SignInState extends State<SignIn> {
               ),
               SizedBox(height: 20.0),
               RaisedButton(
-                color: Colors.pink[400],
+                color: Colors.green[700],
                 child: Text(
                   'Login',
                   style: TextStyle(color: Colors.white),

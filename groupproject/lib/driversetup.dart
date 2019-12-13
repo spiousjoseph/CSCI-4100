@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_i18n/flutter_i18n_delegate.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:groupproject/shared/constants.dart';
+import 'package:groupproject/services/auth.dart';
+import 'package:provider/provider.dart';
+import 'package:groupproject/models/user.dart';
 
 
 class DriverSetupPage extends StatefulWidget {
@@ -15,25 +17,30 @@ class DriverSetupPage extends StatefulWidget {
 class DriverSetup extends State<DriverSetupPage>{
 
   final _formKey = GlobalKey<FormState>();
+  final AuthService _auth = AuthService();
+  
 
   String _name = "";
-  String _origin = "";
-  String _dest = "";
+  String _originDestination = "";
   String _cost = "";
-  int _numOfSeats = 0;
+  String _numOfSeats = "";
   String _error;
+  bool _tripCreated = false;
   // String _NumberOfSeats;
   // String _DriversLicense;
   
 
   @override
   Widget build(BuildContext context){
+    final user = Provider.of<User>(context);
+    String userUID = user.uid;
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.orange[400],
         title: Text('Driver Setup'),
       actions: <Widget>[
         FlatButton(
-          child: Text('EN'),
+          child: Text('EN', style: TextStyle(color: Colors.white)),
           onPressed: (){
             Locale newLocale = Locale('en');
             setState((){
@@ -42,7 +49,7 @@ class DriverSetup extends State<DriverSetupPage>{
           },
         ),
         FlatButton(
-            child: Text('FR'),
+            child: Text('FR', style: TextStyle(color: Colors.white)),
             onPressed: () {
               Locale newLocale = Locale('fr');
               setState(() {
@@ -54,6 +61,12 @@ class DriverSetup extends State<DriverSetupPage>{
       ),
       body: Container(
         padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/home.jpg'),
+            fit: BoxFit.cover,
+          ),
+        ),
         child: Form(
           key: _formKey,
           child: Column(
@@ -68,29 +81,26 @@ class DriverSetup extends State<DriverSetupPage>{
               ),
               SizedBox(height: 30.0),
               TextFormField(
-                obscureText: true,
-                decoration: textInputDecoration.copyWith(hintText: 'Origin'),
-                validator: (val) => val.isEmpty ? 'Please enter the starting location' : null,
+                decoration: textInputDecoration.copyWith(hintText: 'Origin / Destination'),
+                validator: (val) => val.isEmpty ? 'Please enter the origin and destination of trip' : null,
                 onChanged: (val) {
-                  setState(() => _origin = val);
+                  setState(() => _originDestination = val);
                 },
               ),
               SizedBox(height: 30.0),
               TextFormField(
-                obscureText: true,
-                decoration: textInputDecoration.copyWith(hintText: 'Destination'),
-                validator: (val) => val.isEmpty ? 'Please enter the destination' : null,
-                onChanged: (val) {
-                  setState(() => _dest = val);
-                },
-              ),
-              SizedBox(height: 30.0),
-              TextFormField(
-                obscureText: true,
                 decoration: textInputDecoration.copyWith(hintText: 'Cost per Passenger'),
                 validator: (val) => val.isEmpty ? 'Please enter a price' : null,
                 onChanged: (val) {
                   setState(() => _cost = val);
+                },
+              ),
+              SizedBox(height: 30.0),
+              TextFormField(
+                decoration: textInputDecoration.copyWith(hintText: 'Number of Seats'),
+                validator: (val) => val.isEmpty ? 'Please a number of availible seats' : null,
+                onChanged: (val) {
+                  setState(() => _numOfSeats = val);
                 },
               ),
               SizedBox(height: 20.0),
@@ -102,25 +112,35 @@ class DriverSetup extends State<DriverSetupPage>{
                 ),
                 onPressed: () async {
                   if(_formKey.currentState.validate()){
-                    // await DatabaseService(uid: user.uid).updateUserData(
-                    //   _currentSugars ?? snapshot.data.sugars, 
-                    //   _currentName ?? snapshot.data.name, 
-                    //   _currentStrength ?? snapshot.data.strength
-                    // );
+                     _auth.createDriverTrip(_name, _originDestination, _cost, _numOfSeats);
+                     _tripCreated = true; // Add a check later
                   }
                 }
+              ), 
+              
+              // SizedBox(height: 50.0),
+              // Text(
+              //   "TRIP CREATED",
+              //   style: TextStyle(color: Colors.white, fontSize: 15.0),
+              // ),
+
+              // Comment out after check is implemented
+              SizedBox(height: 50.0),
+              Text(
+                "CAUTION: Only one trip is allowed at a time. Updating values with an exist trip up will replace those values",
+                style: TextStyle(color: Colors.white, fontSize: 15.0),
               ),
             ],
           ),
         ),
       ),
       
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          // 
-        },
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () {
+      //     // 
+      //   },
+      //   child: Icon(Icons.add),
+      // ), // This trailing comma makes auto-formatting nicer for build methods.
     );
 
   }

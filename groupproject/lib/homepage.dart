@@ -38,39 +38,45 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ],
           ),
-        body: Center(
-
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Padding(
-              padding: EdgeInsets.only(bottom: 40.0),
-              child: RaisedButton(
-                onPressed: () {
-                  Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => DriverSetupPage()),
-                  );
-                },
-                textColor: Colors.white,
-                color: Color(0xFFFF9900),
-                child: Text('Driver', style: TextStyle(fontSize: 30),),
-              ),
+        body: Container(
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('assets/home.jpg'),
+              fit: BoxFit.cover,
             ),
-            RaisedButton(
-              onPressed: () {
-                Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => PassengerSetup()),
-                );
-              },
-              textColor: Colors.white,
-              color: Color(0xFFFF9900),
-              child: Text('Passenger', style: TextStyle(fontSize: 30),),
+          ),
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Padding(
+                  padding: EdgeInsets.only(bottom: 40.0),
+                  child: RaisedButton(
+                    onPressed: () {
+                      Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => DriverSetupPage()),
+                      );
+                    },
+                    textColor: Colors.white,
+                    color: Color(0xFFFF9900),
+                    child: Text('Driver', style: TextStyle(fontSize: 30),),
+                  ),
+                ),
+                RaisedButton(
+                  onPressed: () {
+                    Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => PassengerSetup()),
+                    );
+                  },
+                  textColor: Colors.white,
+                  color: Color(0xFFFF9900),
+                  child: Text('Passenger', style: TextStyle(fontSize: 30),),
+                ),
+              ],
             ),
-          ],
+          ),
         ),
       ),
-
-     ),
     );
   }
 }

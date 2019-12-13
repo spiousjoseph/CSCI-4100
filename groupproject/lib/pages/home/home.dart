@@ -50,7 +50,7 @@ class Home extends StatelessWidget {
       // Temporary Button, press to insert trip for driver, display list for pass
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          _auth.createDriverTrip('Bob', 10.00, 4, 0);
+         // _auth.createDriverTrip('Bob', 10.00, 4, 0);
          // print("LOOK HERE: " + _auth.getterForUID());
         },
         tooltip: 'Add driver trip',
