@@ -34,6 +34,8 @@ Passenger setup does not have error checking on destination. So if an address is
 
 PolylineLayer break interaction of markers which leads to breaking snackbars but marker destination still exists
 
+Passenger Setup crashes when a text field is submitted without data inside of it. 
+
 
 ## Contributions
 
