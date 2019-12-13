@@ -3,12 +3,11 @@ import 'package:geolocator/geolocator.dart' as prefix0;
 import 'passengermap.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:flutter/rendering.dart';
-import 'package:location/location.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:latlong/latlong.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
-import 'passenger.dart';
-import 'package:groupproject/driver.dart';
+import 'package:groupproject/models/passenger.dart';
+import 'package:groupproject/models/driver.dart';
 
 class PassengerSetup extends StatefulWidget {
   @override

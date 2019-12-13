@@ -1,4 +1,4 @@
-import 'package:groupproject/homepage.dart';
+import 'package:groupproject/pages/home/homepage.dart';
 import 'package:groupproject/models/user.dart';
 import 'package:groupproject/pages/authenticate/authenticate.dart';
 import 'package:flutter/material.dart';

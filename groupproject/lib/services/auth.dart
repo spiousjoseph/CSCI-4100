@@ -44,12 +44,12 @@ class AuthService {
     } 
   }
 
-    Future createDriverTrip(String name, String originDest, String cost, String seats) async {
+    Future createDriverTrip(String name, String originDest, String cost, String seats, String phoneNum) async {
     try {
       FirebaseUser user = await _auth.currentUser();
       
       // Creates a driver trip in the drivers database for this user
-      await DatabaseService(uid: user.uid).updateDriverData(name, originDest, cost, seats);
+      await DatabaseService(uid: user.uid).updateDriverData(name, originDest, cost, seats, phoneNum);
       return _userFromFirebaseUser(user);
     } catch (error) {
       print(error.toString());

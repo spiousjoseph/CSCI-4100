@@ -17,7 +17,7 @@ class DrivingTrip extends StatelessWidget {
       child: Scaffold(
         backgroundColor: Colors.orange[100],
         appBar: AppBar(
-          title: Text('Hop-On!'),
+          title: Text('My Trip As Driver'),
           backgroundColor: Colors.orange[400],
           elevation: 0.0,
           actions: <Widget>[
@@ -57,7 +57,7 @@ class DrivingTrip extends StatelessWidget {
         margin: EdgeInsets.fromLTRB(20.0, 6.0, 20.0, 0.0),
         child: ListTile(
           title: Text(document['name'] + "  -----  " + document['originDest']),
-          subtitle: Text("SEATS: " + document['seats'] + "   COST: " + document['cost']),
+          subtitle: Text("SEATS: " + document['seats'] + "   COST: " + document['cost'] + "   Phone: " + document['phoneNum']),
         ),
     ),
     );

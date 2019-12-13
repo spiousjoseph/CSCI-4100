@@ -3,14 +3,11 @@ import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_map/flutter_map.dart';
 //import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:flutter/rendering.dart';
-import 'package:geolocator/geolocator.dart' as prefix0;
-import 'package:location/location.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:latlong/latlong.dart';
-import 'passenger.dart';
-import 'package:groupproject/driver.dart';
-import 'notifications.dart';
+import 'package:groupproject/models/passenger.dart';
+import 'package:groupproject/models/driver.dart';
+import 'package:groupproject/services/notifications.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
 
 

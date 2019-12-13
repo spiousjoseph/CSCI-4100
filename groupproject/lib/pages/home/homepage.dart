@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:groupproject/driversetup.dart';
-import 'package:groupproject/drivingtrip.dart';
-import 'package:groupproject/passengersetup.dart';
-
+import 'package:groupproject/pages/homeBranches/driversetup.dart';
+import 'package:groupproject/pages/homeBranches/drivingtrip.dart';
+import 'package:groupproject/pages/homeBranches/localNotes.dart';
+import 'package:groupproject/pages/homeBranches/passengersetup.dart';
+import 'package:groupproject/pages/homeBranches/seealldrivers.dart';
 import 'package:groupproject/services/auth.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:provider/provider.dart';
-import 'package:groupproject/models/user.dart';
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
@@ -86,13 +84,35 @@ class _MyHomePageState extends State<MyHomePage> {
                     },
                     textColor: Colors.white,
                     color: Color(0xFFFF9900),
-                    child: Text('Driving Trip', style: TextStyle(fontSize: 30),),
+                    child: Text('My Driving Trip', style: TextStyle(fontSize: 30),),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(bottom: 40.0),
+                  child: RaisedButton(
+                    onPressed: () {
+                      Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => ShowAllDrivers()),
+                      );
+                    },
+                    textColor: Colors.white,
+                    color: Color(0xFFFF9900),
+                    child: Text('See All Drivers', style: TextStyle(fontSize: 30),),
                   ),
                 ),
               ],
             ),
           ),
         ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            Navigator.push(context,
+              MaterialPageRoute(builder: (context) => LocalNotesPage()),
+            );
+          },
+        tooltip: 'Add personal notes',
+        child: Icon(Icons.add),
+      ),
       ),
     );
   }

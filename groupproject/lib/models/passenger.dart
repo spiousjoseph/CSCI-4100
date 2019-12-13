@@ -1,7 +1,5 @@
-//import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:latlong/latlong.dart';
-//import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Passenger{
   Passenger({this.name, this.reference, this.destination, this.location, this.locationName, this.destinationlatlng});

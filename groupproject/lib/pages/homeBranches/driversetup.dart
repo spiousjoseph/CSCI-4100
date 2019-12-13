@@ -24,7 +24,7 @@ class DriverSetup extends State<DriverSetupPage>{
   String _originDestination = "";
   String _cost = "";
   String _numOfSeats = "";
-  String _error;
+  String _phoneNum = "";
   bool _tripCreated = false;
   // String _NumberOfSeats;
   // String _DriversLicense;
@@ -103,6 +103,14 @@ class DriverSetup extends State<DriverSetupPage>{
                   setState(() => _numOfSeats = val);
                 },
               ),
+              SizedBox(height: 30.0),
+              TextFormField(
+                decoration: textInputDecoration.copyWith(hintText: 'Phone Number'),
+                validator: (val) => val.isEmpty ? 'Please Your Phone Number' : null,
+                onChanged: (val) {
+                  setState(() => _phoneNum = val);
+                },
+              ),
               SizedBox(height: 20.0),
               RaisedButton(
                 color: Colors.pink[400],
@@ -112,11 +120,11 @@ class DriverSetup extends State<DriverSetupPage>{
                 ),
                 onPressed: () async {
                   if(_formKey.currentState.validate()){
-                     _auth.createDriverTrip(_name, _originDestination, _cost, _numOfSeats);
+                     _auth.createDriverTrip(_name, _originDestination, _cost, _numOfSeats, _phoneNum);
                      _tripCreated = true; // Add a check later
                   }
                 }
-              ), 
+              ),
               
               // SizedBox(height: 50.0),
               // Text(
@@ -144,48 +152,5 @@ class DriverSetup extends State<DriverSetupPage>{
     );
 
   }
-
-  
-
 }
 
-
-// Center(
-//         child: ListView(
-//           children: <Widget>[
-//             //Name row
-//             Column(
-//               crossAxisAlignment: CrossAxisAlignment.center,
-//               children: <Widget>[
-//                 TextField(
-//                     decoration: InputDecoration(
-//                       labelText: (FlutterI18n.translate(context, 'register.Name')),
-//                       hintText: (FlutterI18n.translate(context, 'register.NameHint')),
-//                     ),
-//                   ),
-//                 TextField(
-//                     decoration: InputDecoration(
-//                       labelText: (FlutterI18n.translate(context, 'register.Car')),
-//                       hintText: (FlutterI18n.translate(context, 'register.CarHint')),
-//                     ),
-//                   ),
-//                 TextFormField(
-//                   initialValue: '0',
-//                   decoration: InputDecoration(
-//                     labelText: (FlutterI18n.translate(context, 'register.NumberofSeats')),
-//                     hintText: (FlutterI18n.translate(context, 'register.SeatHint')),
-//                   ),
-//                 ),
-//                 TextField(
-//                   decoration: InputDecoration(
-//                     labelText: (FlutterI18n.translate(context, 'register.DriversLicense')),
-//                     hintText: (FlutterI18n.translate(context, 'register.LicenseHint')),
-//                   ),
-//                 ),
-                
-//               ],
-//             ),
-
-//           ],
-//         ),
-//       ),

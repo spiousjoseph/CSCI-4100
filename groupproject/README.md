@@ -28,16 +28,12 @@ If you are a passenger,
 ```
 ## Known Bugs
 
-Data table for passengerlist.dart does not handle selection visuals proper however will still operate the same as if it did. So if user were to tap the check box, the checkbox will not refresh with a checked state however will register to the program that it is selected and have the same functionality as proven when an attempt to delete the passenger is made.(PassengerList.dart exists within KelldavPatch3 branch)
+Data table for passengerlist.dart does not handle selection visuals proper however will still operate the same as if it did. So if user were to tap the check box, the checkbox will not refresh with a checked state however will register to the program that it is selected and have the same functionality as proven when an attempt to delete the passenger is made
 
 Passenger setup does not have error checking on destination. So if an address is inputed that is not an actual address program will result in an error and potentially crash.
 
 PolylineLayer break interaction of markers which leads to breaking snackbars but marker destination still exists
 
-Passenger Setup crashes when a text field is submitted without data inside of it. 
-
-## Additional Notes. 
-Our Database may expire since it's in test mode and don't know whether not it will expire before the 17th. Please contact us if there is a cloudbase issue.  
 
 ## Contributions
 
