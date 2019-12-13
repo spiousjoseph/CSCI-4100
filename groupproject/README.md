@@ -47,7 +47,7 @@ Data table for passengerlist.dart does not handle selection visuals proper howev
 
 Passenger setup does not have error checking on destination. So if an address is inputed that is not an actual address program will result in an error and potentially crash.
 
-PolylineLayer break interaction of markers which leads to breaking snackbars but marker destination still exists
+PolylineLayer break interaction of markers which leads to breaking snackbars but marker destination still exists.
 
 
 ## Contributions
