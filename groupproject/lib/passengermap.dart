@@ -29,11 +29,7 @@ class PassengerMapState extends State<PassengerMap>{
 
   @override
   Widget build(BuildContext context) {
-<<<<<<< HEAD
     //var path = [widget.currentPosition.location, widget.currentPosition.destinationlatlng];
-=======
-    var path = [widget.currentPosition.location, widget.currentPosition.destinationlatlng];
->>>>>>> sunu-work
     //centre =  LatLng(_currentPosition.latitude,_currentPosition.longitude);
     var driverLocation = LatLng( (widget.currentPosition.location.latitude + 0.00222), (widget.currentPosition.location.longitude + 0.00222) );//test location
     String mylocation = '';
@@ -44,11 +40,7 @@ class PassengerMapState extends State<PassengerMap>{
       body: Center(
         child: FlutterMap(
           options: MapOptions(
-<<<<<<< HEAD
             minZoom: 14.0,
-=======
-            minZoom: 15.0,
->>>>>>> sunu-work
             center: widget.currentPosition.location,
           ),
           layers: [
@@ -73,26 +65,7 @@ class PassengerMapState extends State<PassengerMap>{
                       color: Colors.blue,
                       iconSize: 45.0,
                       onPressed: () {
-                        mylocation = 'Current Location: ' + widget.currentPosition.locationName;
-                        Scaffold.of(context).showSnackBar(SnackBar(
-                          content: Text(mylocation),
-                        ));
-                      },
-                    ),
-                  ),
-                ),
-                Marker(
-                  width: 45.0,
-                  height: 45.0,
-                  point: widget.drivers[0].location,
-                  builder: (context) => Container(
-                    child: IconButton(
-                      icon: Icon(Icons.directions_car),
-                      color: Colors.blue,
-                      iconSize: 45.0,
-                      onPressed: () {
                         print('Icon clicked');
-<<<<<<< HEAD
                         mylocation = 'Current Location: ' + widget.currentPosition.locationName;
                         print(mylocation);
                         Scaffold.of(context).showSnackBar(SnackBar(
@@ -153,8 +126,6 @@ class PassengerMapState extends State<PassengerMap>{
                       iconSize: 45.0,
                       onPressed: () {
                         print('Icon clicked');
-=======
->>>>>>> sunu-work
 
                         Scaffold.of(context).showSnackBar(SnackBar(
                           content: Text(FlutterI18n.translate(context, 'mappage.Invite')),
@@ -167,49 +138,6 @@ class PassengerMapState extends State<PassengerMap>{
                 Marker(
                   width: 45.0,
                   height: 45.0,
-<<<<<<< HEAD
-=======
-                  point: widget.drivers[1].location,
-                  builder: (context) => Container(
-                    child: IconButton(
-                      icon: Icon(Icons.directions_car),
-                      color: Colors.blue,
-                      iconSize: 45.0,
-                      onPressed: () {
-                        print('Icon clicked');
-
-                        Scaffold.of(context).showSnackBar(SnackBar(
-                          content: Text(FlutterI18n.translate(context, 'mappage.Invite')),
-                        ));
-
-                      },
-                    ),
-                  ),
-                ),
-                Marker(
-                  width: 45.0,
-                  height: 45.0,
-                  point: widget.drivers[2].location,
-                  builder: (context) => Container(
-                    child: IconButton(
-                      icon: Icon(Icons.directions_car),
-                      color: Colors.blue,
-                      iconSize: 45.0,
-                      onPressed: () {
-                        print('Icon clicked');
-
-                        Scaffold.of(context).showSnackBar(SnackBar(
-                          content: Text(FlutterI18n.translate(context, 'mappage.Invite')),
-                        ));
-
-                      },
-                    ),
-                  ),
-                ),
-                Marker(
-                  width: 45.0,
-                  height: 45.0,
->>>>>>> sunu-work
                   point: widget.currentPosition.destinationlatlng,
                   builder: (context) => Container(
                     child: IconButton(
@@ -228,20 +156,8 @@ class PassengerMapState extends State<PassengerMap>{
                   ),
                 ),
 
-<<<<<<< HEAD
 
 
-=======
-              ],
-            ),
-            PolylineLayerOptions(
-              polylines: [
-                Polyline(
-                  points: path,
-                  strokeWidth: 2.0,
-                  color: Colors.blue,
-                ),
->>>>>>> sunu-work
               ],
             ),
 

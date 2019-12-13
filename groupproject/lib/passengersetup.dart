@@ -60,7 +60,6 @@ class PassengerSetupState extends State<PassengerSetup> {
   }
 
 
-<<<<<<< HEAD
   void updateDestination(String destination)  {
     //String address = '301 Front St W, Toronto, ON';
 
@@ -74,17 +73,6 @@ class PassengerSetupState extends State<PassengerSetup> {
     });
 
 
-=======
-  Future<LatLng> updateDestination(String destination) async {
-    //String address = '301 Front St W, Toronto, ON';
-    var destinationlatlng;
-    List<Placemark> placemark = await Geolocator().placemarkFromAddress(destination);
-    for (Placemark place in placemark) {
-      destinationlatlng = LatLng(place.position.latitude, place.position.longitude);
-
-    }
-    return destinationlatlng;
->>>>>>> sunu-work
   }
 
 
@@ -168,16 +156,11 @@ class PassengerSetupState extends State<PassengerSetup> {
                 );
               }).toList(),
               onChanged: (String newValue) {
-<<<<<<< HEAD
                 setState(() {
-=======
-                setState(() async {
->>>>>>> sunu-work
                   _city = newValue;
 
                 });
               },
-<<<<<<< HEAD
             ),
             RaisedButton(
               onPressed: ()  {
@@ -189,31 +172,20 @@ class PassengerSetupState extends State<PassengerSetup> {
               color: Color(0xFFFF9900),
               child: Text('Confirm Before Submit', style: TextStyle(fontSize: 15),),
 
-=======
->>>>>>> sunu-work
             ),
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
-<<<<<<< HEAD
         onPressed: ()  {
           //desLatLng =  await updateDestination(_controllerDestination.text.toString() + ', ' + _city);
-=======
-        onPressed: () async {
-
->>>>>>> sunu-work
 
           Passenger passenger = Passenger(
             name: _controllerName.toString(),
             destination: _controllerDestination.text.toString() + ', ' + _city,
             location: centre,
             locationName: LocationName,
-<<<<<<< HEAD
             destinationlatlng: desLatLng,
-=======
-            destinationlatlng: await updateDestination(_controllerDestination.text.toString() + ', ' + _city),
->>>>>>> sunu-work
           );
 
 
