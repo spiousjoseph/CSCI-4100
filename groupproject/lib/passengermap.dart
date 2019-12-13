@@ -10,6 +10,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:latlong/latlong.dart';
 import 'passenger.dart';
 import 'package:groupproject/driver.dart';
+import 'notifications.dart';
+
 
 class PassengerMap extends StatefulWidget {
   PassengerMap({Key key, this.currentPosition, this.drivers}) : super(key: key);
@@ -23,13 +25,16 @@ class PassengerMap extends StatefulWidget {
 }
 
 class PassengerMapState extends State<PassengerMap>{
-
-
+  var _notifications = Notifications();
   var _geolocator = Geolocator();
+  void _notificationNow(Driver driver) {
+    _notifications.sendNotificationNow('Invite Sent to ' + driver.name + '!', 'Car: ' + driver.car + '\nSeats: ' + driver.seats.toString(), 'Available');
+  }
 
 
   @override
   Widget build(BuildContext context) {
+    _notifications.init();
     //var path = [widget.currentPosition.location, widget.currentPosition.destinationlatlng];
     //centre =  LatLng(_currentPosition.latitude,_currentPosition.longitude);
     var driverLocation = LatLng( (widget.currentPosition.location.latitude + 0.00222), (widget.currentPosition.location.longitude + 0.00222) );//test location
@@ -61,6 +66,7 @@ class PassengerMapState extends State<PassengerMap>{
               );
             },
           ),
+
         ],
       ),
       body: Center(
@@ -113,6 +119,8 @@ class PassengerMapState extends State<PassengerMap>{
                       onPressed: () {
                         print('Icon clicked');
 
+                        _notificationNow(widget.drivers[0]);
+
                         Scaffold.of(context).showSnackBar(SnackBar(
                           content: Text(FlutterI18n.translate(context, 'mappage.Invite')),
                         ));
@@ -133,6 +141,8 @@ class PassengerMapState extends State<PassengerMap>{
                       onPressed: () {
                         print('Icon clicked');
 
+                        _notificationNow(widget.drivers[1]);
+
                         Scaffold.of(context).showSnackBar(SnackBar(
                           content: Text(FlutterI18n.translate(context, 'mappage.Invite')),
                         ));
@@ -152,6 +162,8 @@ class PassengerMapState extends State<PassengerMap>{
                       iconSize: 45.0,
                       onPressed: () {
                         print('Icon clicked');
+
+                        _notificationNow(widget.drivers[2]);
 
                         Scaffold.of(context).showSnackBar(SnackBar(
                           content: Text(FlutterI18n.translate(context, 'mappage.Invite')),
