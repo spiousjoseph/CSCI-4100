@@ -23,6 +23,8 @@ class PassengerSetupState extends State<PassengerSetup> {
   var _geolocator = Geolocator();
   LatLng desLatLng;
   var centre;
+  DateTime _eventDate = DateTime.now();
+
 
   //left for debugging
   //String address = '17 Roscoe Rd, Toronto, ON';
@@ -98,10 +100,11 @@ class PassengerSetupState extends State<PassengerSetup> {
   @override
   Widget build(BuildContext context) {
 
+    DateTime now = DateTime.now();
 
 
     return Scaffold(
-      appBar: AppBar(title: Text('Passenger Setup'),
+      appBar: AppBar(title: Text('Setup', style: TextStyle(fontSize: 18.0),),
           actions: <Widget>[
         FlatButton(
           child: Text('EN'),
@@ -119,7 +122,32 @@ class PassengerSetupState extends State<PassengerSetup> {
               setState(() {
                 FlutterI18n.refresh(context, newLocale);
               });
-            })
+            }),
+            IconButton(
+              icon: Icon(Icons.cake),
+              tooltip: 'Select your Brithday. For a Birthday Discount!',
+              onPressed: (){
+                showDatePicker(
+                  context: context,
+                  firstDate: DateTime(1900),
+                  lastDate: DateTime(2025),
+                  initialDate: DateTime.now(),
+                ).then((value) {
+                  setState(() {
+                    _eventDate = DateTime(
+                      value.year,
+                      value.month,
+                      value.day,
+                      _eventDate.hour,
+                      _eventDate.minute,
+                      _eventDate.second,
+                    );
+                  });
+                });
+              },
+            ),
+
+
       ]),
       body: Center(
         child: ListView(

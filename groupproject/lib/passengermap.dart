@@ -24,6 +24,7 @@ class PassengerMap extends StatefulWidget {
 
 class PassengerMapState extends State<PassengerMap>{
 
+
   var _geolocator = Geolocator();
 
 
@@ -60,7 +61,6 @@ class PassengerMapState extends State<PassengerMap>{
               );
             },
           ),
-          
         ],
       ),
       body: Center(
