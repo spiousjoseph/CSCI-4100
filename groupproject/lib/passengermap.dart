@@ -11,6 +11,8 @@ import 'package:latlong/latlong.dart';
 import 'passenger.dart';
 import 'package:groupproject/driver.dart';
 import 'notifications.dart';
+import 'package:charts_flutter/flutter.dart' as charts;
+
 
 
 class PassengerMap extends StatefulWidget {
@@ -53,6 +55,42 @@ class PassengerMapState extends State<PassengerMap>{
                   return AlertDialog(
                     title: Text('Help Info'),
                     content: Text('Tap on your Icon to see your current Location. \n Tap on car icons to send invites. \n Tap on Star Icon to see your Destination Location.' ),
+                    actions: <Widget>[
+                      FlatButton(
+                        child: Text('Close'),
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                      ),
+                    ],
+                  );
+                },
+              );
+            },
+          ),
+
+          IconButton(
+            icon: Icon(Icons.event_seat),
+            onPressed: (){
+              showDialog<void>(
+                barrierDismissible: false, // user must tap button!
+                context: context,
+                builder: (BuildContext context) {
+                  return AlertDialog(
+                    title: Text('Number of Seats Comparison'),
+                    content: charts.BarChart(
+                      [
+                        charts.Series<Driver, String>(
+                          id: 'Grade Frequency',
+                          colorFn: (a,b) => charts.MaterialPalette.blue.shadeDefault,
+                          domainFn: (Driver driver, unused) => driver.name,
+                          measureFn: (Driver driver, unused) => driver.seats,
+                          data: widget.drivers,
+                        ),
+                      ],
+                      animate: true,
+                      vertical: false,
+                    ),
                     actions: <Widget>[
                       FlatButton(
                         child: Text('Close'),

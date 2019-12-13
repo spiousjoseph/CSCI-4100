@@ -33,7 +33,9 @@ dependencies:
   latlong:
   flutter_map:
   flutter_local_notifications:
-  
+  charts_flutter:
+
+
 
 
 
