@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:groupproject/driversetup.dart';
+import 'package:groupproject/drivingtrip.dart';
 import 'package:groupproject/passengersetup.dart';
 
 import 'package:groupproject/services/auth.dart';
@@ -62,15 +63,31 @@ class _MyHomePageState extends State<MyHomePage> {
                     child: Text('Driver', style: TextStyle(fontSize: 30),),
                   ),
                 ),
-                RaisedButton(
-                  onPressed: () {
-                    Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => PassengerSetup()),
-                    );
-                  },
-                  textColor: Colors.white,
-                  color: Color(0xFFFF9900),
-                  child: Text('Passenger', style: TextStyle(fontSize: 30),),
+                Padding(
+                  padding: EdgeInsets.only(bottom: 40.0),
+                  child: RaisedButton(
+                    onPressed: () {
+                      Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => PassengerSetup()),
+                      );
+                    },
+                    textColor: Colors.white,
+                    color: Color(0xFFFF9900),
+                    child: Text('Passenger', style: TextStyle(fontSize: 30),),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(bottom: 40.0),
+                  child: RaisedButton(
+                    onPressed: () {
+                      Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => DrivingTrip()),
+                      );
+                    },
+                    textColor: Colors.white,
+                    color: Color(0xFFFF9900),
+                    child: Text('Driving Trip', style: TextStyle(fontSize: 30),),
+                  ),
                 ),
               ],
             ),
