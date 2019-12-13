@@ -14,20 +14,20 @@ After compiling and running the application. Sign up at the home screen (or if y
 After successful login select whether you want to setup as a driver or passenger,
 
 If you are a driver:
-                    Enter your driver information
+       Enter your driver information
 
-                    Then sit back and relax as passengers around find you
+       Then sit back and relax as passengers around find you
 
-                    Any requests will appear in the invite screen and you can manage and kick people out of your car by using the passenger list data table
+       Any requests will appear in the invite screen and you can manage and kick people out of your car by using the passenger list data table
 
 If you are a passenger:
-                    Enter your information
+      Enter your information
 
-                    A map will open up and locate nearby drivers heading in the same direction
+      A map will open up and locate nearby drivers heading in the same direction
 
-                    Tap on one of the drivers and request to join them today.
+      Tap on one of the drivers and request to join them today.
 
-                    If you are lost on where the map marker is sent no worries just tap on to yourself.
+      If you are lost on where the map marker is sent no worries just tap on to yourself.
 
 ## Known Bugs
 
