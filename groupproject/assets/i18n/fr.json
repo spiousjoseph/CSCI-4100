@@ -10,7 +10,7 @@
     "OriginDestination" : "Veuillez entrer l'origine et la destination du voyage"
     "Price" : "Veuillez saisir un prix"
     "Seats" : "Veuillez un certain nombre de sièges disponibles"
-    "Warn": "ATTENTION: Un seul voyage est autorisé à la fois. La mise à jour des valeurs avec un trajet existant remplacera ces valeurs"
+    "Warn" : "ATTENTION: Un seul voyage est autorisé à la fois. La mise à jour des valeurs avec un trajet existant remplacera ces valeurs"
     
   },
   "pregister": {
